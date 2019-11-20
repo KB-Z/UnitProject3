@@ -1,0 +1,27 @@
+{
+  "name": "UnitProject3",
+  "version": "1.0.0",
+  "description": "General Assembly Unit Project 3",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dirtygiraffes/UnitProject3.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dirtygiraffes/UnitProject3/issues"
+  },
+  "homepage": "https://github.com/Dirtygiraffes/UnitProject3#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.7",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "mongoose": "^5.7.12"
+  }
+}
