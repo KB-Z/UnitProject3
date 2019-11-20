@@ -9,7 +9,8 @@ app.controller('ProjectController', ['$http', function($http){
       method:'POST',
       data: {
         username:this.signupUsername,
-        password:this.signupPassword
+        password:this.signupPassword,
+        team:this.signupTeam
       }
     }).then((response) => {
       this.loggedInUser = response.data

@@ -7,11 +7,11 @@ require('dotenv').config();
 
 app.use(express.static('public'));
 app.use(express.json());
-// app.use(session({
-//   secret:'unit3projectwootwoot',
-//   resave:false,
-//   saveUninitialized:false
-// }))
+app.use(session({
+  secret:'unit3projectwootwoot',
+  resave:false,
+  saveUninitialized:false
+}))
 
 const PORT = process.env.PORT;
 
@@ -20,8 +20,8 @@ const MONGODB_URI = process.env.MONGODB_URI;
 //controller routes
 const usersController = require('./controllers/users.js');
 app.use('/users', usersController);
-const sessionController = require('./controllers/session.js');
-app.use('/session', sessionController);
+const sessionsController = require('./controllers/sessions.js');
+app.use('/sessions', sessionsController);
 
 
 mongoose.connect(MONGODB_URI, {
