@@ -1,12 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" ng-app="Proj3ct">
-  <head>
-    <meta charset="utf-8">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js" charset="utf-8"></script>
-    <script src="js/app.js" charset="utf-8"></script>
-    <title></title>
-  </head>
-  <body ng-controller="ProjectController as ctrl">
-    <h1>Hello</h1>
-  </body>
-</html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js" charset="utf-8"></script>
+  <script src="js/app.js" charset="utf-8"></script>
+  <title></title>
+</head>
+<body ng-controller="ProjectController as ctrl">
+  <h1>Hello</h1>
+  <section ng-if="ctrl.loggedInUser === false">
+    <h2>Sign Up</h2>
+    <form ng-submit="ctrl.signUp()">
+      Username: <input type="text" ng-model="ctrl.signupUsername"><br>
+      Password: <input type="password" ng-model="ctrl.signupPassword"><br>
+      <input type="submit" value="Sign Up">
+    </form>
+    <h2>Log In</h2>
+    <form ng-submit="ctrl.login()">
+      Username: <input type="text" ng-model="ctrl.loginUsername"><br>
+      Password: <input type="password" ng-model="ctrl.loginPassword"><br>
+      <input type="submit" value="Sign In">
+    </form>
+    </section
+    <div ng-if="ctrl.loggedInUser !== false">
+      <button type="button" ng-click="ctrl.logout()">Logout</button>
+    </body>
+    </html>
