@@ -28,8 +28,8 @@ this.login = () => {
     if (response.data.username) {
       this.loggedInUser = response.data
     } else {
-      // this.loginUsername = null;
-      // this.loginPassword = null;
+      this.loginUsername = null;
+      this.loginPassword = null;
     }
   },() => {
     console.log(error);
@@ -44,5 +44,14 @@ this.logout = () => {
     this.loggedInUser = false;
   })
 }
+
+$http({
+  method:'GET',
+  url:'/sessions'
+}).then((response) => {
+  if(response.data.username){
+    this.loggedInUser = response.data;
+  }
+});
 
 }]);

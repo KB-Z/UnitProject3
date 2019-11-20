@@ -5,6 +5,14 @@ const db = mongoose.connection;
 const session = require('express-session');
 require('dotenv').config();
 
+app.use(express.static('public'));
+app.use(express.json());
+// app.use(session({
+//   secret:'unit3projectwootwoot',
+//   resave:false,
+//   saveUninitialized:false
+// }))
+
 const PORT = process.env.PORT;
 
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -19,8 +27,11 @@ mongoose.connect(MONGODB_URI, {
 	useUnifiedTopology: true,
 	useFindAndModify: false,
 	useCreateIndex: true
+}, () => {
+	console.log('connected to mongoose');
 });
 
-db.on('connected', () => console.log('mongo connected: ', MONGODB_URI));
+
+// db.on('connected', () => console.log('mongo connected: ', MONGODB_URI));
 
 app.listen(PORT, () => console.log('Listening...'));
