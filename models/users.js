@@ -6,6 +6,6 @@ const userSchema = new mongoose.Schema({
   team:{type:String, required:true, unique:true}
 });
 
-const Users = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
 
-module.exports = Users;
+module.exports = User;
