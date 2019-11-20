@@ -13,6 +13,9 @@ const MONGODB_URI = process.env.MONGODB_URI;
 //controller routes
 const usersController = require('./controllers/users.js');
 app.use('/users', usersController);
+const sessionController = require('./controllers/session.js');
+app.use('/session', sessionController);
+
 
 mongoose.connect(MONGODB_URI, {
 	useNewUrlParser: true,
