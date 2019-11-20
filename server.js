@@ -9,7 +9,6 @@ const PORT = process.env.PORT;
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
-
 //controller routes
 const usersController = require('./controllers/users.js');
 app.use('/users', usersController);
@@ -22,5 +21,7 @@ mongoose.connect(MONGODB_URI, {
 });
 
 db.on('connected', () => console.log('mongo connected: ', MONGODB_URI));
+db.on('error', (error) => console.log(error.message));
+db.on('disconnected', () => console.log('mongo disconnected'));
 
 app.listen(PORT, () => console.log('Listening...'));
