@@ -8,7 +8,10 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-	res.send('POST route');
+  req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
+  User.create(req.body, (err, createdUser) => {
+    res.json(createdUser);
+  })
 });
 
 router.delete('/', (req, res) => {
