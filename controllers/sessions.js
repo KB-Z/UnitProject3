@@ -21,15 +21,18 @@ router.post('/', (req, res) => {
       if (doesPasswordMatch) {
         console.log('Match. Assigning req.session.user to found user.');
         req.session.user = foundUser;
-				console.log("userId in sessions",req.session.user.id);
+				console.log("userId in sessions", req.session.user.id);
         //res.json(foundUser);
         ///getting the boards tied with the user////////
         //foundUser="5dd6df85bc92ba84d7317bb3"
         Boards.find({
-          assignedTo: req.session.user.id
+          assignedTo:foundUser.id
         }, (err, userBoards) => {
           console.log(userBoards);
-          res.json(userBoards);
+          res.json({user:foundUser,boards:userBoards});
+          if(err){
+            console.log(err);
+          }
         })
       } else {
         console.log('error!');

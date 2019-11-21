@@ -12,12 +12,10 @@ router.get('/', (req, res) => {
 ///getting all the projects for showing
 router.get('/:userid', (req, res) => {
 	console.log('Entering GET route for boards with user id');
-  // console.log(req);
-	let x ; // res.json('hi');
   User.findById(req.params.userid, (err,foundUser) => {
 		console.log('Found user!');
   	console.log(foundUser.boards);
-		res.json('afsf');
+		res.json(foundUser);
   });
 });
 
