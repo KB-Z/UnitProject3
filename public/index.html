@@ -31,8 +31,6 @@
       <button type="button" ng-click="ctrl.signUpToggle = !ctrl.signUpToggle">Sign Up</button>
     </div>
   </section>
-    <div ng-if="ctrl.loggedInUser !== false">
-      <button type="button" ng-click="ctrl.logout()">Logout</button>
-    </div>
+    <nav ng-if="ctrl.loggedInUser !== false" ng-include="'partials/navigation.html'"></nav>
   </body>
   </html>

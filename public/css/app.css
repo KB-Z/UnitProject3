@@ -9,11 +9,11 @@ body {
 h1 {
   font-family: 'Geo', sans-serif;
   font-style: italic;
-  font-size: 70px;
+  font-size: 5vw;
   background-color: #33658A;
   color: #F26419;
   margin: auto;
   padding: 5px 5px;
-  width: 18%;
+  width: 20vw;
   border: 2px double #F6AE2D;
 }
