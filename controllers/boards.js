@@ -3,23 +3,21 @@ const router = express.Router();
 const Boards = require('../models/boards.js');
 const User = require('../models/users.js');
 
-///getting all the projects for showing
-router.get('/:userid', (req, res) => {
-	console.log('Entering GET route for boards with user id');
-  // console.log(req);
-	let x ; // res.json('hi');
-  User.findById(req.params.userid, (err,foundUser) => {
-		console.log('Found user!');
-  	console.log(foundUser.boards);
-		res.json('afsf');
-  });
-});
+router.get('/',(req,res) => {
+	Boards.find({},(err,allBoards) => {
+		res.json(allBoards);
+	})
+})
 
-////to create new boards
+//to create new boards
 router.post('/', (req, res) => {
   console.log('Entered POST route for boards');
+	//req.body should at least be boardName
 	Boards.create(req.body, (error, createdBoard) => {
-      console.log('Board created!');
+			console.log('received:' + req.body);
+			console.log('user id pushed into assignedTo: ' + req.session.user._id);
+			createdBoard.assignedTo.push(req.session.user._id);
+			console.log('created board:' + createdBoard);
 			res.json(createdBoard);
   });
 });

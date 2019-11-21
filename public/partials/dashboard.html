@@ -1,1 +1,14 @@
-<p>dashboard stuff</p>
+<section>
+  <!-- Add to ng-repeat the object from which to pull the user's assigned boards. -->
+  <h2>Board Header</h2>
+  <h4>New Board</h4>
+  <form ng-submit="ctrl.createBoard()">
+    Board Name: <input type="text" ng-model="ctrl.newBoardName"><br><br>
+    <input type="submit" value="Create Board">
+  </form>
+  <div ng-repeat="board in ctrl.boards">
+    <div>
+      {{board.boardName}}
+    </div>
+  </div>
+</section>
