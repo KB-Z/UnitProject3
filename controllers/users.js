@@ -4,7 +4,10 @@ const router = express.Router();
 const User = require('../models/users.js');
 
 router.get('/', (req, res) => {
-	res.send('GET route');
+	User.find({},(err,foundUser) => {
+			res.json(foundUser);
+	});
+
 });
 
 router.post('/', (req, res) => {
