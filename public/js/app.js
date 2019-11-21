@@ -62,4 +62,28 @@ app.controller('ProjectController', ['$http', function($http){
     }
   });
 
+  this.getBoards = () => {
+    $http({
+      url:'/boards',
+      method:'GET'
+    }).then((response) => {
+
+    })
+  }
+
+  this.createBoard = () => {
+    http({
+      url:'/boards',
+      method:'POST',
+      data: {
+        username:this.signupUsername,
+        password:this.signupPassword,
+        boards: this.boardsId,
+        team:this.signupTeam
+      }
+    }).then((response) => {
+      this.loggedInUser = response.data
+    })
+  }
+
 }]);
