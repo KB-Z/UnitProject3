@@ -72,7 +72,7 @@ app.controller('ProjectController', ['$http', function($http){
   }
 
   this.createBoard = () => {
-    http({
+    $http({
       url:'/boards',
       method:'POST',
       data: {
