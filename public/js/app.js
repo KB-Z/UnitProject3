@@ -3,6 +3,7 @@ const app = angular.module('prj3ct', []);
 app.controller('ProjectController', ['$http', function($http){
   this.loggedInUser = false;
   this.signUpToggle = false;
+  this.boardsId=[];
   this.includePath = 'partials/menu.html'
   this.changeInclude = (path) => {
     this.includePath = 'partials/' + path + '.html'
@@ -15,6 +16,7 @@ app.controller('ProjectController', ['$http', function($http){
       data: {
         username:this.signupUsername,
         password:this.signupPassword,
+        boards: this.boardsId,
         team:this.signupTeam
       }
     }).then((response) => {
