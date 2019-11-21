@@ -1,0 +1,19 @@
+* {
+  text-align: center;
+}
+
+body {
+    background-color: #86BBD8;
+}
+
+h1 {
+  font-family: 'Geo', sans-serif;
+  font-style: italic;
+  font-size: 70px;
+  background-color: #33658A;
+  color: #F26419;
+  margin: auto;
+  padding: 5px 5px;
+  width: 18%;
+  border: 2px double #F6AE2D;
+}
