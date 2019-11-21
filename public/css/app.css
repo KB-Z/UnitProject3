@@ -1,6 +1,6 @@
-/* * {
+* {
   text-align: center;
-} */
+}
 
 body {
   background-color: #86BBD8;
@@ -12,10 +12,11 @@ h1 {
   font-size: 5vw;
   background-color: #33658A;
   color: #F26419;
-  margin: auto;
+  margin: 10px auto;
   padding: 5px 5px;
   width: 20vw;
   border: 2px double #F6AE2D;
+  border-radius: 10px;
 }
 
 ul {
@@ -24,6 +25,7 @@ ul {
   padding: 0;
   overflow: hidden;
   background-color: #2F4858;
+  border: 1px solid #F6AE2D;
 }
 
 .nav {
