@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" ng-app="prj3ct">
+
 <head>
   <meta charset="utf-8">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js" charset="utf-8"></script>
@@ -8,6 +9,7 @@
   <link rel="stylesheet" href="/css/app.css">
   <title ng-non-bindable>{{prj3ct}}</title>
 </head>
+
 <body ng-controller="ProjectController as ctrl">
   <ul ng-include="'partials/navigation.html'">
 
@@ -20,7 +22,8 @@
         Username: <input type="text" ng-model="ctrl.signupUsername"><br>
         Password: <input type="password" ng-model="ctrl.signupPassword"><br>
         Team: <input type="text" ng-model="ctrl.signupTeam"><br>
-        <input type="submit" value="Sign Up">
+        Boards:<input type="text" ng-model="ctrl.boardsId"/>
+        <input type="submit" value="Sign Up"/>
       </form>
       <button type="button" ng-click="ctrl.signUpToggle = !ctrl.signUpToggle">Go to Login</button>
     </div>
@@ -35,4 +38,5 @@
     </div>
   </section>
 </body>
+
 </html>
