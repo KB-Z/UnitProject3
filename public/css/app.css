@@ -21,7 +21,9 @@ h1 {
 
 .auth {
   border: 1px solid red;
-  display: block;
+  /* display: block; */
+  margin: auto;
+  width: 50vw;
 }
 
 ul {
