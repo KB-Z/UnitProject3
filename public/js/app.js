@@ -62,4 +62,13 @@ app.controller('ProjectController', ['$http', function($http){
     }
   });
 
+  this.getBoards = () => {
+    $http({
+      url:'/boards',
+      method:'GET'
+    }).then((response) => {
+
+    })
+  }
+
 }]);
