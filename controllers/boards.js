@@ -15,9 +15,9 @@ router.post('/', (req, res) => {
 	//req.body should at least be boardName
 	Boards.create(req.body, (error, createdBoard) => {
 			console.log('received:' + req.body);
-			console.log('created board:' + createdBoard);
-			console.log('user id pushed into assignedTo: ' + req.session.user.id);
+			console.log('user id pushed into assignedTo: ' + req.session.user._id);
 			createdBoard.assignedTo.push(req.session.user.id);
+			console.log('created board:' + createdBoard);
 			res.json(createdBoard);
   });
 });
