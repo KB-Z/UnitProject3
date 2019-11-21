@@ -16,7 +16,7 @@
     <div ng-include="'partials/signup.html'" ng-show="ctrl.signUpToggle"></div>
     <div ng-include="'partials/login.html'" ng-show="!ctrl.signUpToggle"></div>
   </section>
-  <section>
+  <section ng-if="ctrl.loggedInUser !== false">
     <h2>{{ctrl.loggedInUser.username}}'s Dashboard</h2>
   </section>
 </body>
