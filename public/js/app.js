@@ -1,7 +1,8 @@
-const app = angular.module('Proj3ct', []);
+const app = angular.module('prj3ct', []);
 
 app.controller('ProjectController', ['$http', function($http){
   this.loggedInUser = false;
+  this.signUpToggle = false;
 
   this.signUp = () => {
     $http({
