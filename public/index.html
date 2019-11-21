@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" ng-app="Prj3ct">
+<html lang="en" dir="ltr" ng-app="prj3ct">
 <head>
   <meta charset="utf-8">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js" charset="utf-8"></script>
   <script src="js/app.js" charset="utf-8"></script>
+  <link href="https://fonts.googleapis.com/css?family=Geo:400i&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/app.css">
-  <title>Prj3ct</title>
+  <title ng-non-bindable>{{prj3ct}}</title>
 </head>
 <body ng-controller="ProjectController as ctrl">
-  <h1>Prj3ct</h1>
+  <h1 ng-non-bindable>{{prj3ct}}</h1>
   <section ng-if="ctrl.loggedInUser === false">
     <div ng-show="ctrl.signUpToggle">
       <h2>Sign Up</h2>

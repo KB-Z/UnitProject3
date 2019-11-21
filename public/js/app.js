@@ -1,4 +1,4 @@
-const app = angular.module('Prj3ct', []);
+const app = angular.module('prj3ct', []);
 
 app.controller('ProjectController', ['$http', function($http){
   this.loggedInUser = false;
