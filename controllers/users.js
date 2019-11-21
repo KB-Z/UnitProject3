@@ -4,30 +4,35 @@ const router = express.Router();
 const User = require('../models/users.js');
 
 router.get('/', (req, res) => {
-	console.log('Entered GET route for users');
 	User.find({},(err,foundUser) => {
-		console.log('Found a user!');
 			res.json(foundUser);
 	});
 
 });
-
-router.post('/', (req, res) => {
-	console.log('Entered POST route for users');
-  req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
-  User.create(req.body, (err, createdUser) => {
-		console.log('Created a user!');
-    res.json(createdUser);
+///getting all the projects for showing
+router.get('/:userid', (req, res) => {
+	console.log('Entering GET route for boards with user id');
+  // console.log(req);
+	let x ; // res.json('hi');
+  User.findById(req.params.userid, (err,foundUser) => {
+		console.log('Found user!');
+  	console.log(foundUser.boards);
+		res.json('afsf');
   });
 });
 
+router.post('/', (req, res) => {
+  req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
+  User.create(req.body, (err, createdUser) => {
+    res.json(createdUser);
+  })
+});
+
 router.delete('/', (req, res) => {
-	console.log('Entered DELETE route for users');
 	res.send('DELETE route');
 });
 
 router.put('/', (req, res) => {
-	console.log('Entered PUT route for users');
 	res.send('PUT route');
 });
 

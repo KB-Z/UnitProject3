@@ -3,17 +3,11 @@ const router = express.Router();
 const Boards = require('../models/boards.js');
 const User = require('../models/users.js');
 
-///getting all the projects for showing
-router.get('/:userid', (req, res) => {
-	console.log('Entering GET route for boards with user id');
-  // console.log(req);
-	let x ; // res.json('hi');
-  User.findById(req.params.userid, (err,foundUser) => {
-		console.log('Found user!');
-  	console.log(foundUser.boards);
-		res.json('afsf');
-  });
-});
+router.get('/',(req,res) => {
+	Boards.find({},(err,allBoards) => {
+		res.json(allBoards);
+	})
+})
 
 ////to create new boards
 router.post('/', (req, res) => {
