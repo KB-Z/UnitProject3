@@ -4,6 +4,7 @@
 
 body {
   background-color: #86BBD8;
+  color: #F6AE2D;
 }
 
 h1 {
@@ -19,11 +20,17 @@ h1 {
   border-radius: 10px;
 }
 
+h2 {
+  font-family: 'Exo', sans-serif;
+  font-weight: bold;
+}
+
 .auth {
   border: 1px solid red;
   /* display: block; */
   margin: auto;
   width: 50vw;
+  background-color: #33658A;
 }
 
 ul {
