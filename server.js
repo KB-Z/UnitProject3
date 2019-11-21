@@ -22,7 +22,8 @@ const usersController = require('./controllers/users.js');
 app.use('/users', usersController);
 const sessionsController = require('./controllers/sessions.js');
 app.use('/sessions', sessionsController);
-
+const projectsController = require('./controllers/projects.js');
+app.use('/projects', projectsController);
 
 mongoose.connect(MONGODB_URI, {
 	useNewUrlParser: true,
