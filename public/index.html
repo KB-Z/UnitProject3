@@ -9,32 +9,17 @@
   <link rel="stylesheet" href="/css/app.css">
   <title ng-non-bindable>{{prj3ct}}</title>
 </head>
-
 <body ng-controller="ProjectController as ctrl">
-  <ul ng-include="'partials/navigation.html'">
-
-  </ul>
+  <ul ng-include="'partials/navigation.html'"></ul>
   <h1 ng-non-bindable>{{prj3ct}}</h1>
-  <section ng-if="ctrl.loggedInUser === false">
-    <div ng-show="ctrl.signUpToggle">
-      <h2>Sign Up</h2>
-      <form ng-submit="ctrl.signUp()">
-        Username: <input type="text" ng-model="ctrl.signupUsername"><br>
-        Password: <input type="password" ng-model="ctrl.signupPassword"><br>
-        Team: <input type="text" ng-model="ctrl.signupTeam"><br>
-        Boards:<input type="text" ng-model="ctrl.boardsId"/>
-        <input type="submit" value="Sign Up"/>
-      </form>
-      <button type="button" ng-click="ctrl.signUpToggle = !ctrl.signUpToggle">Go to Login</button>
-    </div>
-    <div ng-show="!ctrl.signUpToggle">
-      <h2>Log In</h2>
-      <form ng-submit="ctrl.login()">
-        Username: <input type="text" ng-model="ctrl.loginUsername">
-        Password: <input type="password" ng-model="ctrl.loginPassword"><br>
-        <input type="submit" value="Sign In">
-      </form>
-      <button type="button" ng-click="ctrl.signUpToggle = !ctrl.signUpToggle">Sign Up</button>
+  <section class="auth" ng-if="ctrl.loggedInUser === false">
+    <div ng-include="'partials/signup.html'" ng-show="ctrl.signUpToggle"></div>
+    <div ng-include="'partials/login.html'" ng-show="!ctrl.signUpToggle"></div>
+  </section>
+  <section ng-if="ctrl.loggedInUser !== false">
+    <h2>{{ctrl.loggedInUser.username}}'s Dashboard</h2>
+    <div ng-include="'partials/dashboard.html'">
+
     </div>
   </section>
 </body>
