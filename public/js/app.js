@@ -79,7 +79,7 @@ app.controller('ProjectController', ['$http', function($http){
         boardName:this.newBoardName
       }
     }).then((response) => {
-      this.newBoard = response.data
+      this.boards = response.data
     })
   }
 
