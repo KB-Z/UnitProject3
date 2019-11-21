@@ -4,8 +4,9 @@ const Project = require('../models/projects.js');
 const User = require('../models/users.js');
 ///getting all the projects for showing
 router.get('/', (req, res) => {
-  Project.find({}, (err, projectList) => {
-      res.json(projectList);
+
+  Project.find({/*team:"team"*/}, (err, projectList) => {
+      res.json(projectList,req,res);
   })
 })
 

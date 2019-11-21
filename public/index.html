@@ -9,6 +9,9 @@
   <title ng-non-bindable>{{prj3ct}}</title>
 </head>
 <body ng-controller="ProjectController as ctrl">
+  <ul ng-include="'partials/navigation.html'">
+
+  </ul>
   <h1 ng-non-bindable>{{prj3ct}}</h1>
   <section ng-if="ctrl.loggedInUser === false">
     <div ng-show="ctrl.signUpToggle">
@@ -31,8 +34,5 @@
       <button type="button" ng-click="ctrl.signUpToggle = !ctrl.signUpToggle">Sign Up</button>
     </div>
   </section>
-    <div ng-if="ctrl.loggedInUser !== false">
-      <button type="button" ng-click="ctrl.logout()">Logout</button>
-    </div>
-  </body>
-  </html>
+</body>
+</html>
