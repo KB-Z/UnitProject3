@@ -44,7 +44,7 @@ app.controller('ProjectController', ['$http', function($http){
 
   this.logout = () => {
     $http({
-      url:'/project',
+      url:'/sessions',
       method:'delete'
     }).then(() => {
       this.loggedInUser = false;
