@@ -1,1 +1,3 @@
-<button type="button" ng-click="ctrl.logout()">Logout</button>
+<li class="nav">Home</li>
+<li class="nav">My Boards</li>
+<li style="float:right" class="nav" ng-if="ctrl.loggedInUser !== false" ng-click="ctrl.logout()">Logout</li>
