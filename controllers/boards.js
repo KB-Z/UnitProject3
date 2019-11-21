@@ -9,11 +9,15 @@ router.get('/',(req,res) => {
 	})
 })
 
-////to create new boards
+//to create new boards
 router.post('/', (req, res) => {
   console.log('Entered POST route for boards');
+	//req.body should at least be boardName
 	Boards.create(req.body, (error, createdBoard) => {
-      console.log('Board created!');
+			console.log('received:' + req.body);
+			console.log('user id pushed into assignedTo: ' + req.session.user._id);
+			createdBoard.assignedTo.push(req.session.user._id);
+			console.log('created board:' + createdBoard);
 			res.json(createdBoard);
   });
 });
