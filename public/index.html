@@ -18,6 +18,9 @@
   </section>
   <section ng-if="ctrl.loggedInUser !== false">
     <h2>{{ctrl.loggedInUser.username}}'s Dashboard</h2>
+    <div ng-include="'partials/dashboard.html'">
+
+    </div>
   </section>
 </body>
 
