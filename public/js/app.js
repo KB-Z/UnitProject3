@@ -1,7 +1,13 @@
-const app = angular.module('Proj3ct', []);
+const app = angular.module('prj3ct', []);
 
 app.controller('ProjectController', ['$http', function($http){
   this.loggedInUser = false;
+  this.signUpToggle = false;
+  this.boardsId=[];
+  this.includePath = 'partials/menu.html'
+  this.changeInclude = (path) => {
+    this.includePath = 'partials/' + path + '.html'
+  };
 
   this.signUp = () => {
     $http({
@@ -10,6 +16,7 @@ app.controller('ProjectController', ['$http', function($http){
       data: {
         username:this.signupUsername,
         password:this.signupPassword,
+        boards: this.boardsId,
         team:this.signupTeam
       }
     }).then((response) => {
@@ -39,7 +46,7 @@ app.controller('ProjectController', ['$http', function($http){
 
   this.logout = () => {
     $http({
-      url:'/project',
+      url:'/sessions',
       method:'delete'
     }).then(() => {
       this.loggedInUser = false;
