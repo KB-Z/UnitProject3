@@ -76,13 +76,10 @@ app.controller('ProjectController', ['$http', function($http){
       url:'/boards',
       method:'POST',
       data: {
-        username:this.signupUsername,
-        password:this.signupPassword,
-        boards: this.boardsId,
-        team:this.signupTeam
+        boardName:this.newBoardName
       }
     }).then((response) => {
-      this.loggedInUser = response.data
+      this.newBoard = response.data
     })
   }
 
