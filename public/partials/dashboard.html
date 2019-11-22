@@ -1,32 +1,25 @@
 <section>
   <!-- Add to ng-repeat the object from which to pull the user's assigned boards. -->
   <div class="container">
-    <h2>Board Header</h2>
     <h4>New Board</h4>
-    <button type="button" ng-click="ctrl.getBoards()">Get Boards</button>
     <form ng-submit="ctrl.createBoard()">
       Board Name: <input type="text" ng-model="ctrl.newBoardName"><br><br>
       <input type="submit" value="Create Board">
     </form>
-  </div>
-
-  <div class="container" ng-repeat="board in ctrl.boards" class="cardcontainer" >
-    <div class="card">
-    <h4>{{board.boardName}}</h4>
-
-<!-- I cant fucking figure out why it won't display the tasks in nested loop -Joe- -->
-<!-- It works now. -->
-    <ul ng-repeat="task in board.tasks track by task+$index" class="container">
-      <li>{{ task }}</li>
-      <li>{{boards.assignedTo}}</li>
-    </ul>
-    <form ng-submit="ctrl.createTask(board)">
-      New Task: <input type="text" ng-model="ctrl.newTaskName">
-      <input type="submit" value="Submit New Task">
-    </form>
-      <button ng-click='ctrl.deleteBoard(board)'>DELETE</button>
-  </div>
+    <button type="button" ng-click="ctrl.getBoards()">Refresh Boards</button>
+    <div class="container" ng-repeat="board in ctrl.boards" class="cardcontainer" >
+      <div class="card">
+        <h2>{{board.boardName}}</h2>
+        <ul ng-repeat="task in board.tasks track by task+$index" class="container">
+          <li>{{ task }}</li>
+          <li>{{boards.assignedTo}}</li>
+        </ul>
+        <form ng-submit="ctrl.createTask(board)">
+          New Task: <input type="text" ng-model="ctrl.newTaskName">
+          <input type="submit" value="Submit New Task">
+        </form>
+        <button ng-click='ctrl.deleteBoard(board)'>DELETE</button>
+      </div>
     </div>
-
-
+  </div>
 </section>
