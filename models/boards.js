@@ -13,7 +13,7 @@ const boardSchema = new mongoose.Schema({
     //unique: true
   },
   assignedTo:[String],/* users that are assigned*/
-  tasks: Array,
+  tasks: [String],
   startDate: Date,
   endDate: Date
 
