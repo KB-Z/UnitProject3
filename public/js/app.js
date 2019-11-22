@@ -173,5 +173,5 @@ app.controller('ProjectController', ['$http', function($http) {
       console.log(error);
     });
   };
-
+this.getBoards();
 }]);

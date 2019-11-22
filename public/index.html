@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" ng-app="prj3ct">
-
 <head>
   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js" charset="utf-8"></script>
   <script src="js/app.js" charset="utf-8"></script>
   <link href="https://fonts.googleapis.com/css?family=Geo:400i&display=swap" rel="stylesheet">
@@ -15,24 +14,28 @@
   <title ng-non-bindable>{{prj3ct}}</title>
 </head>
 <body ng-controller="ProjectController as ctrl">
-  <ul ng-include="'partials/navigation.html'"></ul>
-  <h1 ng-non-bindable>{{prj3ct}}</h1>
-  <section class="row" ng-if="ctrl.loggedInUser === false">
-    <div class="one-half container" ng-include="'partials/signup.html'" ng-show="ctrl.signUpToggle"></div>
-    <div class="one-half container" ng-include="'partials/login.html'" ng-show="!ctrl.signUpToggle"></div>
-  </section>
-  <section ng-if="ctrl.loggedInUser !== false">
-    <h2>{{ctrl.loggedInUser.username}}'s Dashboard</h2>
-    <div ng-include="'partials/dashboard.html'">
-
+  <div class="container">
+    <ul class="u-full-width" ng-include="'partials/navigation.html'"></ul>
+    <div class="row">
+      <h1 class="four columns offset-by-four" ng-non-bindable>{{prj3ct}}</h1>
     </div>
-  </section>
-	<section ng-if='ctrl.loggedInUser !== false'>
-		<form ng-submit='ctrl.editUser(ctrl.loggedInUser)'>
-			Username:<input type='text' ng-model='ctrl.editUsername'/>
-			<input type='submit' value='EDIT USERNAME'/>
-		</form>
-		<button ng-click='ctrl.deleteUser(ctrl.loggedInUser)'>DELETE USER</button>
-	</section>
+    <div class="row" ng-if="ctrl.loggedInUser === false">
+      <div class="eight columns offset-by-two card" ng-include="'partials/signup.html'" ng-show="ctrl.signUpToggle"></div>
+      <div class="eight columns offset-by-two card" ng-include="'partials/login.html'" ng-show="!ctrl.signUpToggle"></div>
+    </div>
+    <div class="row" ng-if="ctrl.loggedInUser !== false">
+      <h2 class="six columns offset-by-three card">{{ctrl.loggedInUser.username}}'s Dashboard</h2>
+      <div class="u-full-width" ng-include="'partials/dashboard.html'">
+
+      </div>
+    </div>
+    <!-- <section class="row" ng-if='ctrl.loggedInUser !== false'>
+      <form class="six columns" ng-submit='ctrl.editUser(ctrl.loggedInUser)'>
+        Username:<input type='text' ng-model='ctrl.editUsername'/>
+        <input type='submit' value='EDIT USERNAME'/>
+      </form>
+      <button class="six columns" ng-click='ctrl.deleteUser(ctrl.loggedInUser)'>DELETE USER</button>
+    </section> -->
+  </div>
 </body>
 </html>

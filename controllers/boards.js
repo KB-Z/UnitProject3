@@ -65,19 +65,16 @@ router.put('/addtasks/:id', (req, res) => {
 //task deletion
 router.put('/updatetasks/', (req, res) => {
   console.log('Entered Update route for Tasks');
-	console.log("whole board object passed",req.body.board);
+  console.log("whole board object passed", req.body.board);
   console.log('boardid', req.body.board._id);
   Boards.findByIdAndUpdate(req.body.board._id,
-    req.body, {
+    req.body.board, {
       new: true
     },
     (err, updatedtaskBoard) => {
-			console.log("entering taskboard");
-			updatedtaskBoard.save(() => {
-				console.log("entering call back");
-				res.json(updatedtaskBoard);
-			})
-
+      console.log("entering taskboard");
+      updatedtaskBoard.save()
+      res.json(updatedtaskBoard);
     });
 
 })
