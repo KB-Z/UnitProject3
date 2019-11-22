@@ -3,7 +3,7 @@
   <label for="userLoginUsername">Username:</label>
   <input id="userLoginUsername" type="text" ng-model="ctrl.loginUsername">
   <label for="userLoginPassword">Password:</label>
-  <input id="userLoginPassword" type="password" ng-model="ctrl.loginPassword"><br>
+  <input id="userLoginPassword" type="password" ng-model="ctrl.loginPassword">
+  <button class="button-primary" type="button" ng-click="ctrl.signUpToggle = !ctrl.signUpToggle">Go to Login</button>
   <input class="button-primary" type="submit" value="Sign In">
-  <button class="button-primary" type="button" ng-click="ctrl.signUpToggle = !ctrl.signUpToggle">Sign Up</button>
 </form>

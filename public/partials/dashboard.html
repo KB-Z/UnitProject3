@@ -6,7 +6,7 @@
 </form>
 <div class="ten columns offset-by-one card" ng-repeat="board in ctrl.boards">
   <div>
-    <h2>{{board.boardName}}</h2>
+    <h2><span ng-dblclick="ctrl.detailsToggle()">{{board.boardName}}</span></h2>
     <!-- <ul ng-repeat="task in board.tasks track by task+$index">
       <li>{{task}}</li>
       <form ng-submit="ctrl.editTask(board,$index)">
