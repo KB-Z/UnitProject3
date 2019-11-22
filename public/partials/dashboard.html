@@ -7,17 +7,23 @@
       <input type="submit" class="button-primary" value="Create Board">
     </form>
     <button type="button" class="button-primary" ng-click="ctrl.getBoards()">Refresh Boards</button>
-    <div class="container row" ng-repeat="board in ctrl.boards" class="cardcontainer" >
+    <div class="container row" ng-repeat="board in ctrl.boards" class="cardcontainer">
       <div class="one-half">
         <h2>{{board.boardName}}</h2>
         <ul ng-repeat="task in board.tasks track by task+$index" class="container">
           <li>{{ task }}</li>
           <button ng-click="ctrl.deleteTask(board._id,$index)">Delete Task</button>
+                <button ng-click='ctrl.editTask(board,$index)'>Edit Task</button>
+                <form ng-submit="ctrl.editTask(board,$index)">
+                  update Task: <input type="text" ng-model="ctrl.newupdateTaskName">
+                  <input type="submit" value="Submit New Task">
+                </form>
         </ul>
         <form class="one-half" ng-submit="ctrl.createTask(board)">
           New Task: <input type="text" ng-model="ctrl.newTaskName">
           <input type="submit" value="Submit New Task">
         </form>
+
         <button ng-click='ctrl.deleteBoard(board)'>DELETE</button>
       </div>
     </div>
