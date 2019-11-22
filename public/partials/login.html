@@ -1,7 +1,9 @@
 <h2>Log In</h2>
-<form ng-submit="ctrl.login()">
-  Username: <input type="text" ng-model="ctrl.loginUsername">
-  Password: <input type="password" ng-model="ctrl.loginPassword"><br>
-  <input type="submit" value="Sign In">
+<form class="six columns offset-by-three" ng-submit="ctrl.login()">
+  <label for="userLoginUsername">Username:</label>
+  <input id="userLoginUsername" type="text" ng-model="ctrl.loginUsername">
+  <label for="userLoginPassword">Password:</label>
+  <input id="userLoginPassword" type="password" ng-model="ctrl.loginPassword"><br>
+  <input class="button-primary" type="submit" value="Sign In">
+  <button class="button-primary" type="button" ng-click="ctrl.signUpToggle = !ctrl.signUpToggle">Sign Up</button>
 </form>
-<button type="button" ng-click="ctrl.signUpToggle = !ctrl.signUpToggle">Sign Up</button>

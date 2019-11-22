@@ -1,25 +1,20 @@
-<section>
-  <!-- Add to ng-repeat the object from which to pull the user's assigned boards. -->
-  <div class="row">
-    <h4>New Board</h4>
-    <form class="one-half" ng-submit="ctrl.createBoard()">
-      <label for="boardName">Board Name:</label><input type="text" id="boardName" ng-model="ctrl.newBoardName"><br><br>
-      <input type="submit" class="button-primary" value="Create Board">
+<form class="eight columns offset-by-two card" ng-submit="ctrl.createBoard()">
+  <label for="boardName">New Board Name:</label><input type="text" id="boardName" ng-model="ctrl.newBoardName">
+  <input type="submit" class="button-primary" value="Create Board">
+  <button type="button" class="button-primary" ng-click="ctrl.getBoards()">Refresh Boards</button>
+</form>
+<div class="ten columns offset-by-one card" ng-repeat="board in ctrl.boards">
+  <div>
+    <h2>{{board.boardName}}</h2>
+    <ul ng-repeat="task in board.tasks track by task+$index">
+      <li>{{ task }}</li>
+      <li>{{boards.assignedTo}}</li>
+    </ul>
+    <form class="eight columns offset-by-two" ng-submit="ctrl.createTask(board)">
+      <label for="newTaskName">New Task:</label>
+      <input id="newTaskName" type="text" ng-model="ctrl.newTaskName">
+      <input class="button-primary" type="submit" value="Submit New Task">
+      <button class="button-primary" ng-click='ctrl.deleteBoard(board)'>DELETE</button>
     </form>
-    <button type="button" class="button-primary" ng-click="ctrl.getBoards()">Refresh Boards</button>
-    <div class="container row" ng-repeat="board in ctrl.boards" class="cardcontainer" >
-      <div class="one-half">
-        <h2>{{board.boardName}}</h2>
-        <ul ng-repeat="task in board.tasks track by task+$index" class="container">
-          <li>{{ task }}</li>
-          <li>{{boards.assignedTo}}</li>
-        </ul>
-        <form class="one-half" ng-submit="ctrl.createTask(board)">
-          New Task: <input type="text" ng-model="ctrl.newTaskName">
-          <input type="submit" value="Submit New Task">
-        </form>
-        <button ng-click='ctrl.deleteBoard(board)'>DELETE</button>
-      </div>
-    </div>
   </div>
-</section>
+</div>
