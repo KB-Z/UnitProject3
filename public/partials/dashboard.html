@@ -7,8 +7,14 @@
     <input type="submit" value="Create Board">
   </form>
   <div ng-repeat="board in ctrl.boards">
-    <div>
-      {{board.boardName}}
-    </div>
+      <h4>{{board.boardName}}</h4>
+			<button ng-click='ctrl.deleteBoard(board)'>DELETE</button>
+
+<!-- I cant fucking figure out why it won't display the tasks in nested loop -Joe- -->
+			<!--
+			<ul ng-repeat='task in board.tasks'>
+				<li>{{task}}</li>
+			</ul>
+			-->
   </div>
 </section>

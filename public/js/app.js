@@ -3,7 +3,7 @@ const app = angular.module('prj3ct', []);
 app.controller('ProjectController', ['$http', function($http){
   this.loggedInUser = false;
   this.signUpToggle = false;
-  this.boardsId=[];
+  this.boards=[];
   this.includePath = 'partials/menu.html'
   this.changeInclude = (path) => {
     this.includePath = 'partials/' + path + '.html'
@@ -33,16 +33,19 @@ app.controller('ProjectController', ['$http', function($http){
         password:this.loginPassword
       }
     }).then((response) => {
-      if (response.data.username) {
-        this.loggedInUser = response.data
+      console.log("in angular session response.data.user",response.data.user);
+			console.log('Boards received from response.data.boards: ', response.data.boards);
+      if (response.data.user.username) {
+        this.loggedInUser = response.data.user;
+				this.boards = response.data.boards;
       } else {
         this.loginUsername = null;
         this.loginPassword = null;
-      }
-    },() => {
+      };
+    },(error) => {
       console.log(error);
-    })
-  }
+    });//end of $http.then() call
+  };//end of this.login
 
   this.logout = () => {
     $http({
@@ -67,9 +70,9 @@ app.controller('ProjectController', ['$http', function($http){
       url:'/boards',
       method:'GET'
     }).then((response) => {
-
-    })
-  }
+			this.boards = response.data;
+    });
+  };
 
   this.createBoard = () => {
     $http({
@@ -79,8 +82,19 @@ app.controller('ProjectController', ['$http', function($http){
         boardName:this.newBoardName
       }
     }).then((response) => {
-      this.boards = response.data
+			this.getBoards();
     })
   }
+
+	this.deleteBoard = (board) => {
+		$http({
+			url: `/boards/${board._id}`,
+			method:'DELETE'
+		}).then( response => {
+			this.getBoards();
+		}, error => {
+			console.log(error);
+		});
+	};
 
 }]);
