@@ -1,20 +1,20 @@
 <section>
   <!-- Add to ng-repeat the object from which to pull the user's assigned boards. -->
-  <div class="container">
+  <div class="row">
     <h4>New Board</h4>
-    <form ng-submit="ctrl.createBoard()">
-      Board Name: <input type="text" ng-model="ctrl.newBoardName"><br><br>
-      <input type="submit" value="Create Board">
+    <form class="one-half" ng-submit="ctrl.createBoard()">
+      <label for="boardName">Board Name:</label><input type="text" id="boardName" ng-model="ctrl.newBoardName"><br><br>
+      <input type="submit" class="button-primary" value="Create Board">
     </form>
-    <button type="button" ng-click="ctrl.getBoards()">Refresh Boards</button>
-    <div class="container" ng-repeat="board in ctrl.boards" class="cardcontainer" >
-      <div class="card">
+    <button type="button" class="button-primary" ng-click="ctrl.getBoards()">Refresh Boards</button>
+    <div class="container row" ng-repeat="board in ctrl.boards" class="cardcontainer" >
+      <div class="one-half">
         <h2>{{board.boardName}}</h2>
         <ul ng-repeat="task in board.tasks track by task+$index" class="container">
           <li>{{ task }}</li>
           <li>{{boards.assignedTo}}</li>
         </ul>
-        <form ng-submit="ctrl.createTask(board)">
+        <form class="one-half" ng-submit="ctrl.createTask(board)">
           New Task: <input type="text" ng-model="ctrl.newTaskName">
           <input type="submit" value="Submit New Task">
         </form>

@@ -17,9 +17,9 @@
 <body ng-controller="ProjectController as ctrl">
   <ul ng-include="'partials/navigation.html'"></ul>
   <h1 ng-non-bindable>{{prj3ct}}</h1>
-  <section class="auth" ng-if="ctrl.loggedInUser === false">
-    <div ng-include="'partials/signup.html'" ng-show="ctrl.signUpToggle"></div>
-    <div ng-include="'partials/login.html'" ng-show="!ctrl.signUpToggle"></div>
+  <section class="row" ng-if="ctrl.loggedInUser === false">
+    <div class="one-half container" ng-include="'partials/signup.html'" ng-show="ctrl.signUpToggle"></div>
+    <div class="one-half container" ng-include="'partials/login.html'" ng-show="!ctrl.signUpToggle"></div>
   </section>
   <section ng-if="ctrl.loggedInUser !== false">
     <h2>{{ctrl.loggedInUser.username}}'s Dashboard</h2>

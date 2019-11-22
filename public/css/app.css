@@ -28,9 +28,9 @@ h2 {
 .auth, .container {
   border: 1px solid red;
   /* display: block; */
-  margin: 0 auto;
+  /* margin: 0 auto;
   width: 50vw;
-  height: 20vw;
+  height: 20vw; */
   background-color: #33658A;
 }
 
