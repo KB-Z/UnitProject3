@@ -12,7 +12,7 @@
         <h2>{{board.boardName}}</h2>
         <ul ng-repeat="task in board.tasks track by task+$index" class="container">
           <li>{{ task }}</li>
-          <li>{{boards.assignedTo}}</li>
+          <button ng-click="ctrl.deleteTask(board,$index)">Delete Task</button>
         </ul>
         <form class="one-half" ng-submit="ctrl.createTask(board)">
           New Task: <input type="text" ng-model="ctrl.newTaskName">

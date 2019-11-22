@@ -43,6 +43,25 @@ router.put('/update/:id', (req, res) => {
   });
 });
 
+//update the boardSchema
+router.put('/updatetasks/:id', (req, res) => {
+	console.log(req.body.tasks);
+  Boards.findByIdAndUpdate(req.params.id, {$push:{tasks:req.body.tasks}}, {new:true}, (error, updatedBoard) => {
+  	res.json(updatedBoard);
+  });
+});
+
+//task deletion
+router.delete('/tasks/:boardid/:taskid',(req,res) => {
+	console.log('Entered DELETE route for Tasks');
+	console.log(req.params.boardid[taskid]);
+	// Boards.findByIdAndRemove(req.params.boardid[taskid], (error, deletedTask) => {
+	// 	console.log('Found and deleting board: ' + deletedBoard);
+	// 	res.json(deletedBoard);
+	// });
+})
+
+
 router.delete('/:id', (req, res) => {
 	console.log('Entered DELETE route for Boards');
 	Boards.findByIdAndRemove(req.params.id, (error, deletedBoard) => {
