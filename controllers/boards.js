@@ -8,31 +8,44 @@ router.get('/',(req,res) => {
 	console.log('Entered GET route for boards');
 	console.log('Using the following user id: ' + req.session.user._id);
 	Boards.find({assignedTo:req.session.user._id}, (error, foundBoards) => {
-		console.log('Found boards: ' + foundBoards);
-		res.json(foundBoards);
-	})
+		if (foundBoards) {
+			console.log('Found boards: ' + foundBoards);
+			res.json(foundBoards);
+		} else {
+			console.log('No Boards Found!');
+			res.json(error);
+		};
+	});
+});
+/*
+//Test route to get ALL Boards for debuggin purposes -Zach
+router.get('/', (req,res) => {
+Boards.find((error, allBoards) => {
+console.log('debugging...' + allBoards );
+res.json(allBoards);
 })
-
-// Test route to get ALL Boards for debuggin purposes -Zach
-// router.get('/', (req,res) => {
-// 	Boards.find((error, allBoards) => {
-// 		// console.log('debugging...' + allBoards );
-// 		res.json(allBoards);
-// 	})
-// })
+})
+*/
 
 //to create new boards
 router.post('/', (req, res) => {
   console.log('Entered POST route for boards');
 	//req.body should at least be boardName
-	req.body.assignedTo=[req.session.user._id];
+	//req.body.assignedTo=[req.session.user._id];
 	//req.body.assignedTo.push(req.session.user._id);
 	Boards.create(req.body, (error, createdBoard) => {
-			console.log('received:' + req.body.boardName);
-			console.log('user id pushed into assignedTo: ' + req.session.user._id);
-			createdBoard.assignedTo.push(req.session.user._id);
-			console.log('created board:' + createdBoard);
-			res.json(createdBoard);
+			if (createdBoard) {
+				console.log('received:' + req.body.boardName);
+				console.log('user id pushed into assignedTo: ' + req.session.user._id);
+				console.log(createdBoard);
+				createdBoard.assignedTo.push(req.session.user._id);
+				console.log('created board:' + createdBoard);
+				createdBoard.save();
+				res.json(createdBoard);
+			} else {
+				console.log('Error occurred: ' + error);
+				res.json(error);
+			};
   });
 });
 
