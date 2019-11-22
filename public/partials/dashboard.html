@@ -6,15 +6,18 @@
     Board Name: <input type="text" ng-model="ctrl.newBoardName"><br><br>
     <input type="submit" value="Create Board">
   </form>
-  <div ng-repeat="board in ctrl.boards">
+
+  <div ng-repeat="board in ctrl.boards" class="cardcontainer" >
+    <div class="card">
     <h4>{{board.boardName}}</h4>
-    <button ng-click='ctrl.deleteBoard(board)'>DELETE</button>
 
-    <!-- I cant fucking figure out why it won't display the tasks in nested loop -Joe- -->
-
-    <ul ng-repeat="task in board.tasks track by task+$index">
-      <li> {{ task }}</li>
+<!-- I cant fucking figure out why it won't display the tasks in nested loop -Joe- -->
+    <ul ng-repeat="task in board.tasks track by task+$index" class="container">
+      <li>{{ task }}</li>
     </ul>
-
+      <button ng-click='ctrl.deleteBoard(board)'>DELETE</button>
   </div>
+    </div>
+
+
 </section>
