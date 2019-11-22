@@ -28,6 +28,7 @@ router.post('/', (req, res) => {
           if(err){res.json(err);} //checking for errors
           
 					console.log('Boards sent to frontend: ' + userBoards);
+					//return to Front-End with user & boards
           res.json({user:foundUser,boards:userBoards});
         });
 
