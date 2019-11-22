@@ -27,5 +27,12 @@
 
     </div>
   </section>
+	<section ng-if='ctrl.loggedInUser !== false'>
+		<form ng-submit='ctrl.editUser(ctrl.loggedInUser)'>
+			Username:<input type='text' ng-model='ctrl.editUsername'/>
+			<input type='submit' value='EDIT USERNAME'/>
+		</form>
+		<button ng-click='ctrl.deleteUser(ctrl.loggedInUser)'>DELETE USER</button>
+	</section>
 </body>
 </html>

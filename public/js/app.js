@@ -9,6 +9,33 @@ app.controller('ProjectController', ['$http', function($http){
     this.includePath = 'partials/' + path + '.html'
   };
 
+	this.deleteUser = (user) => {
+		$http({
+			url:`users/${user._id}`,
+			method:'DELETE'
+		}).then( response => {
+			this.loggedInUser = false;
+		}, error => {
+			console.log(error);
+			this.loggedInUser = false;
+		});
+	};
+
+	this.editUser = (user) => {
+		$http({
+			url:`users/${user._id}`,
+			method:'PUT',
+			data: {
+				username: this.editUsername
+			}
+		}).then( response => {
+			this.loggedInUser = response.data;
+		}, error => {
+			console.log(error);
+			this.loggedInUser = false;
+		});
+	};
+
   this.signUp = () => {
     $http({
       url:'/users',
