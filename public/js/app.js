@@ -33,8 +33,10 @@ app.controller('ProjectController', ['$http', function($http){
         password:this.loginPassword
       }
     }).then((response) => {
-      if (response.data.username) {
-        this.loggedInUser = response.data
+      console.log("in angular session response.data.user",response.data.user);
+      if (response.data.user.username) {
+
+        this.loggedInUser = response.data.user
       } else {
         this.loginUsername = null;
         this.loginPassword = null;
