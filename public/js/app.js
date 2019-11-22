@@ -107,18 +107,18 @@ app.controller('ProjectController', ['$http', function($http) {
     })
   }
 
-  this.deleteTask = (board, taskid) => {
+  this.deleteTask = (boardid, taskid) => {
     console.log("inside task deleteion");
-    console.log(board, taskid);
-    // $http({
-    //   url:'/tasks/board._id/' + board._id,
-    //   method:'PUT',
-    //   data:{
-    //     tasks:this.newTaskName
-    //   }
-    // }).then((response) => {
-    // 	this.getBoards();
-    // })
+    console.log(boardid, taskid);
+    $http({
+      url:'/boards/deletetasks/' + boardid+'/'+taskid,
+      method:'DELETE',
+      data:{
+        tasks:this.newTaskName
+      }
+    }).then((response) => {
+    	this.getBoards();
+    })
   }
 
 

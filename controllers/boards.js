@@ -52,13 +52,14 @@ router.put('/updatetasks/:id', (req, res) => {
 });
 
 //task deletion
-router.delete('/tasks/:boardid/:taskid',(req,res) => {
+router.delete('/deletetasks/:boardid/:taskid',(req,res) => {
 	console.log('Entered DELETE route for Tasks');
-	console.log(req.params.boardid[taskid]);
-	// Boards.findByIdAndRemove(req.params.boardid[taskid], (error, deletedTask) => {
-	// 	console.log('Found and deleting board: ' + deletedBoard);
-	// 	res.json(deletedBoard);
-	// });
+	console.log('boardid',req.params.boardid,'index of item to be removed',req.params.taskid);
+	Boards.findById(req.params.boardid, (error, taskboard) => {
+		console.log('Found board to add task: ' + taskboard);
+		taskboard.tasks.splice(req.params.taskid,1);
+	taskboard.save();
+	});
 })
 
 
