@@ -13,6 +13,8 @@ router.get('/',(req,res) => {
 router.post('/', (req, res) => {
   console.log('Entered POST route for boards');
 	//req.body should at least be boardName
+	req.body.assignedTo=[req.session.user._id];
+	//req.body.assignedTo.push(req.session.user._id);
 	Boards.create(req.body, (error, createdBoard) => {
 			console.log('received:' + req.body);
 			console.log('user id pushed into assignedTo: ' + req.session.user._id);
