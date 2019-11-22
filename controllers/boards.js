@@ -13,6 +13,14 @@ router.get('/',(req,res) => {
 	})
 })
 
+// Test route to get ALL Boards for debuggin purposes -Zach
+// router.get('/', (req,res) => {
+// 	Boards.find((error, allBoards) => {
+// 		// console.log('debugging...' + allBoards );
+// 		res.json(allBoards);
+// 	})
+// })
+
 //to create new boards
 router.post('/', (req, res) => {
   console.log('Entered POST route for boards');

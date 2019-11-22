@@ -38,6 +38,7 @@ app.controller('ProjectController', ['$http', function($http){
       if (response.data.user.username) {
         this.loggedInUser = response.data.user;
 				this.boards = response.data.boards;
+        this.getBoards();
       } else {
         this.loginUsername = null;
         this.loginPassword = null;
@@ -71,6 +72,13 @@ app.controller('ProjectController', ['$http', function($http){
       method:'GET'
     }).then((response) => {
 			this.boards = response.data;
+      // angular.forEach(response.data, (boards) => {
+      //   console.log('Assigned ID from board' + boards.assignedTo);
+      //   console.log('Assigned Task(s) from board' + boards.tasks);
+      //   this.userBoards = boards.assignedTo
+      // });
+      console.table(this.boards);
+      // console.log(this.userBoards);
     });
   };
 
@@ -80,6 +88,18 @@ app.controller('ProjectController', ['$http', function($http){
       method:'POST',
       data: {
         boardName:this.newBoardName
+      }
+    }).then((response) => {
+			this.getBoards();
+    })
+  }
+
+  this.createTask = (board) => {
+    $http({
+      url:'/boards/update/' + board._id,
+      method:'PUT',
+      data:{
+        tasks:this.newTaskName
       }
     }).then((response) => {
 			this.getBoards();

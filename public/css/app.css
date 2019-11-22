@@ -25,7 +25,7 @@ h2 {
   font-weight: bold;
 }
 
-.auth {
+.auth, .container {
   border: 1px solid red;
   /* display: block; */
   margin: auto;
@@ -58,26 +58,4 @@ ul {
 @media screen and (max-width: 600px) {
   ul.nav li.right,
   ul.nav li {float: none;}
-}
-/* card */
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  width:20%;
-  display:flex;
-    flex-direction: column;
-  justify-content: space-between;
-
-  transition: 0.3s;
-  border-radius: 5px; /* 5px rounded corners */
-}
-
-/* On mouse-over, add a deeper shadow */
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-/* Add some padding inside the card container */
-.container {
-  padding: 2px 16px;
-
 }
