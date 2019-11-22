@@ -4,6 +4,7 @@ app.controller('ProjectController', ['$http', function($http) {
   this.loggedInUser = false;
   this.signUpToggle = false;
   this.boards = [];
+  this.newupdateTaskName="";
   this.includePath = 'partials/menu.html'
   this.changeInclude = (path) => {
     this.includePath = 'partials/' + path + '.html'
@@ -124,7 +125,7 @@ app.controller('ProjectController', ['$http', function($http) {
   this.createTask = (board) => {
     //console.log(board);
     $http({
-      url: '/boards/updatetasks/' + board._id ,
+      url: '/boards/addtasks/' + board._id ,
       method: 'PUT',
       data: {
         tasks: this.newTaskName
@@ -134,15 +135,27 @@ app.controller('ProjectController', ['$http', function($http) {
     })
   }
 
+  this.editTask = (board, taskid) => {
+    console.log("inside task edit");
+    board.tasks[taskid] = this.newupdateTaskName;
+    console.log("board object with updated task",board);
+    $http({
+      url:'/boards/updatetasks/' ,
+      method:'PUT',
+      data:{
+        board:board
+      }
+    }).then((response) => {
+    	this.getBoards();
+    })
+  }
+
   this.deleteTask = (boardid, taskid) => {
     console.log("inside task deleteion");
     console.log(boardid, taskid);
     $http({
       url:'/boards/deletetasks/' + boardid+'/'+taskid,
-      method:'DELETE',
-      data:{
-        tasks:this.newTaskName
-      }
+      method:'DELETE'
     }).then((response) => {
     	this.getBoards();
     })
@@ -160,5 +173,5 @@ app.controller('ProjectController', ['$http', function($http) {
       console.log(error);
     });
   };
-
+this.getBoards();
 }]);
