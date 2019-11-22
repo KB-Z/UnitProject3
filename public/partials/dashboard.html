@@ -1,27 +1,25 @@
 <form class="eight columns offset-by-two card" ng-submit="ctrl.createBoard()">
-  <label for="boardName">New Board Name:</label><input type="text" id="boardName" ng-model="ctrl.newBoardName">
-  <input type="submit" class="button-primary" value="Create Board">
-  <button type="button" class="button-primary" ng-click="ctrl.getBoards()">Refresh Boards</button>
+  <label class="four columns offset-by-four" for="boardName">New Board Name:</label>
+  <input class="eight columns offset-by-two" type="text" id="boardName" ng-model="ctrl.newBoardName">
+  <input type="submit" class="five columns button-primary offset-by-one" value="Create Board">
+  <button type="button" class="five columns button-primary" ng-click="ctrl.getBoards()">Refresh Boards</button>
 </form>
 <div class="ten columns offset-by-one card" ng-repeat="board in ctrl.boards">
   <div>
     <h2>{{board.boardName}}</h2>
-    <ul ng-repeat="task in board.tasks track by task+$index">
-      <li>{{ task }}</li>
+    <!-- <ul ng-repeat="task in board.tasks track by task+$index">
+      <li>{{task}}</li>
       <form ng-submit="ctrl.editTask(board,$index)">
         <input type="text" ng-model="ctrl.newupdateTaskName">
         <input type="submit" value="Update Task">
       </form> <button ng-click="ctrl.deleteTask(board._id,$index)">Delete Task</button>
       <li>{{boards.assignedTo}}</li>
-    </ul>
+    </ul> -->
     <form class="eight columns offset-by-two" ng-submit="ctrl.createTask(board)">
       <label for="newTaskName">New Task:</label>
       <input id="newTaskName" type="text" ng-model="ctrl.newTaskName">
-
-      <input class="button-primary" type="submit" value="Submit New Task">
-      <button class="button-primary" ng-click='ctrl.deleteBoard(board)'>DELETE</button>
+      <input class="button-primary" type="submit" value="New Task">
+      <button class="button-primary" ng-click='ctrl.deleteBoard(board)'>Delete Board</button>
     </form>
   </div>
-  <button type="button" class="button-primary" ng-click="ctrl.getBoards()">Refresh Boards</button>
-
 </div>

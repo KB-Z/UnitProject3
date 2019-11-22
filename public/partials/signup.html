@@ -1,13 +1,13 @@
 <h2>Sign Up</h2>
-<form class="six columns offset-by-three" ng-submit="ctrl.signUp()">
+<form class="five columns offset-by-four" ng-submit="ctrl.signUp()">
   <label for="newUserUsername">Username:</label>
   <input id="newUserUsername" type="text" ng-model="ctrl.signupUsername">
   <label for="newUserPassword">Password:</label>
   <input id="newUserPassword" type="password" ng-model="ctrl.signupPassword">
-  <label for="newUserTeam">Team:</label>
-  <input id="newUserTeam" type="text" ng-model="ctrl.signupTeam">
-  <label for="newUserBoards">Boards:</label>
-  <input id="newUserBoards" type="text" ng-model="ctrl.boardsId"/>
+  <!-- <label for="newUserTeam">Team:</label>
+  <input id="newUserTeam" type="text" ng-model="ctrl.signupTeam"> -->
+  <!-- <label for="newUserBoards">Boards:</label>
+  <input id="newUserBoards" type="text" ng-model="ctrl.boardsId"/> -->
   <input class="button-primary" type="submit" value="Sign Up">
   <button class="button-primary" type="button" ng-click="ctrl.signUpToggle = !ctrl.signUpToggle">Go to Login</button>
 </form>
