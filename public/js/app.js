@@ -10,6 +10,21 @@ app.controller('ProjectController', ['$http', function($http) {
     this.includePath = 'partials/' + path + '.html'
   };
 
+	this.inviteUser = (inviteBoard, invitedUser) => {
+		$http({
+			url:`boards/invite/${inviteBoard._id}/${invitedUser._id}`,
+			method:'PUT',
+			data: {
+				board: inviteBoard,
+				user: invitedUser
+			}
+		}).then( response => {
+			console.log('Response from inviteUser(): ' + response);
+		}, error => {
+			console.log('Received error: ' + error);
+		});
+	};
+
 	this.deleteUser = (user) => {
 		$http({
 			url:`users/${user._id}`,
