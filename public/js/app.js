@@ -24,6 +24,7 @@ app.controller('ProjectController', ['$http', function($http) {
 	this.allUsers();
 
 	this.inviteUser = (inviteBoard, invitedUser) => {
+    console.log(invitedUser);
 		$http({
 			url:`boards/invite/${inviteBoard._id}/${invitedUser._id}`,
 			method:'PUT',
@@ -114,7 +115,7 @@ app.controller('ProjectController', ['$http', function($http) {
       this.loggedInUser = false;
     })
   }
-	
+
   $http({
     method: 'GET',
     url: '/sessions'
@@ -123,7 +124,7 @@ app.controller('ProjectController', ['$http', function($http) {
       this.loggedInUser = response.data;
     }
   });
-  
+
 	this.getBoards = () => {
     $http({
       url: '/boards',
