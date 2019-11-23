@@ -21,5 +21,18 @@
       <input class="button-primary" type="submit" value="New Task">
       <button class="button-primary" ng-click='ctrl.deleteBoard(board)'>Delete Board</button>
     </form>
+
+		<!-- temporary spot for search/invite users to a board -Joe -->
+		<label for='Search by'>
+			<input type='text' placeholder='Search for User' ng-model='searchBox'>
+		</label>
+		<ul>
+    	<li ng-repeat="user in ctrl.foundUsers | filter: searchBox">
+				{{user.username}} - 
+				<button ng-click='ctrl.inviteUser(board, user)'>
+					Invite to board
+				</button>
+			</li>
+		</ul>
   </div>
 </div>
