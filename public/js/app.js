@@ -10,6 +10,18 @@ app.controller('ProjectController', ['$http', function($http) {
     this.includePath = 'partials/' + path + '.html'
   };
 
+	this.searchUsers = (userToFind) => {
+		$http({
+			url:`users/search/${userToFind._id}`,
+			method: GET
+		}).then( response => {
+			console.log('Received: ' + response.data);
+			this.foundUsers = response.data;
+		}, error => {
+			console.log('Received error: ' + error);
+		});
+	};
+
 	this.inviteUser = (inviteBoard, invitedUser) => {
 		$http({
 			url:`boards/invite/${inviteBoard._id}/${invitedUser._id}`,
@@ -19,7 +31,7 @@ app.controller('ProjectController', ['$http', function($http) {
 				user: invitedUser
 			}
 		}).then( response => {
-			console.log('Response from inviteUser(): ' + response);
+			console.log('Response from inviteUser(): ' + response.data);
 		}, error => {
 			console.log('Received error: ' + error);
 		});
