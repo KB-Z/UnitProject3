@@ -4,12 +4,12 @@
   <input type="submit" class="five columns button-primary offset-by-one" value="Create Board">
   <button type="button" class="five columns button-primary" ng-click="ctrl.getBoards()">Refresh Boards</button>
 </form>
-  <div class="ten columns offset-by-one card" ng-repeat="board in ctrl.boards">
-    <div>
-      <h2><span ng-dblclick="ctrl.detailsToggle()">{{board.boardName}}</span></h2>
-        <!-- <ul ng-repeat="task in board.tasks track by task+$index">
-        <li>{{task}}</li>
-        <form ng-submit="ctrl.editTask(board,$index)">
+<div class="ten columns offset-by-one card" ng-repeat="board in ctrl.boards">
+  <div>
+    <h2><span ng-dblclick="ctrl.detailsToggle()">{{board.boardName}}</span></h2>
+    <!-- <ul ng-repeat="task in board.tasks track by task+$index">
+      <li>{{task}}</li>
+      <form ng-submit="ctrl.editTask(board,$index)">
         <input type="text" ng-model="ctrl.newupdateTaskName">
         <input type="submit" value="Update Task">
       </form> <button ng-click="ctrl.deleteTask(board._id,$index)">Delete Task</button>
