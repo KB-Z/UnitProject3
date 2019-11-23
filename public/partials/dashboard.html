@@ -13,7 +13,7 @@
         <input type="text" ng-model="ctrl.newupdateTaskName">
         <input type="submit" value="Update Task">
       </form> <button ng-click="ctrl.deleteTask(board._id,$index)">Delete Task</button>
-      <li>{{boards.assignedTo}}</li>
+      <li>{{board.assignedTo}}</li>
     </ul> -->
     <form class="eight columns offset-by-two" ng-submit="ctrl.createTask(board)">
       <label for="newTaskName">New Task:</label>
@@ -22,17 +22,30 @@
       <button class="button-primary" ng-click='ctrl.deleteBoard(board)'>Delete Board</button>
     </form>
 
+<div class="row" >
+  <label for='Search by'>
+    <input type='text' placeholder='Search for User' ng-model='searchBox'>
+  </label>
+    <select ng-model="ctrl.invitedUser" ng-options="user.username for user in ctrl.foundUsers | filter: searchBox" >
+      {{ctrl.invitedUser.username}}
+      <!-- <span ng-click='ctrl.inviteUser(board, user)'>Invite</span> -->
+    </select>
+
+    <button class="button-primary" ng-click='ctrl.inviteUser(board, ctrl.invitedUser)'>
+      Invite to board
+    </button>
+</div>
 		<!-- temporary spot for search/invite users to a board -Joe -->
-		<label for='Search by'>
+		<!-- <label for='Search by'>
 			<input type='text' placeholder='Search for User' ng-model='searchBox'>
 		</label>
-		<ul>
+		<ul >
     	<li ng-repeat="user in ctrl.foundUsers | filter: searchBox">
-				{{user.username}} - 
+				{{user.username}} -
 				<button ng-click='ctrl.inviteUser(board, user)'>
 					Invite to board
 				</button>
 			</li>
-		</ul>
+		</ul> -->
   </div>
 </div>
