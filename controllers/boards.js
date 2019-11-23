@@ -52,6 +52,24 @@ router.post('/', (req, res) => {
   });
 });
 
+//invite user to a board
+router.put('/invite/:boardId/:invitedId', (req, res) => {
+	console.log('Entered PUT route for invited user');
+	Boards.findById(req.params.boardId, (error, foundBoard) => {
+		console.log('found board: ' + foundBoard);
+		if (!foundBoard.assignedTo.includes(req.params.invitedId)) {
+			console.log('Invited User is not currently included in the board. Pushing user in');
+			foundBoard.assignedTo.push(req.params.invitedId);
+			foundBoard.save();
+			console.log('Updated board saved as: ' + foundBoard);
+			res.json(foundBoard);
+		} else {
+			console.log('User aleady in the board. (or error)...');
+			res.json(foundBoard);
+		}
+	});
+});
+
 //update the boardSchema
 router.put('/update/:id', (req, res) => {
   Boards.findByIdAndUpdate(req.params.id, req.body, {
