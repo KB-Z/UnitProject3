@@ -7,14 +7,14 @@
 <div class="ten columns offset-by-one card" ng-repeat="board in ctrl.boards">
   <div>
     <h2><span ng-dblclick="ctrl.detailsToggle()">{{board.boardName}}</span></h2>
-    <!-- <ul ng-repeat="task in board.tasks track by task+$index">
+     <ul ng-repeat="task in board.tasks track by task+$index">
       <li>{{task}}</li>
-      <form ng-submit="ctrl.editTask(board,$index)">
+     <form ng-submit="ctrl.editTask(board,$index)">
         <input type="text" ng-model="ctrl.newupdateTaskName">
         <input type="submit" value="Update Task">
       </form> <button ng-click="ctrl.deleteTask(board._id,$index)">Delete Task</button>
-      <li>{{board.assignedTo}}</li>
-    </ul> -->
+      <!-- <li>{{board.assignedTo}}</li> -->
+    </ul>
     <form class="eight columns offset-by-two" ng-submit="ctrl.createTask(board)">
       <label for="newTaskName">New Task:</label>
       <input id="newTaskName" type="text" ng-model="ctrl.newTaskName">
@@ -28,9 +28,7 @@
   </label>
     <select ng-model="ctrl.invitedUser" ng-options="user.username for user in ctrl.foundUsers | filter: searchBox" >
       {{ctrl.invitedUser.username}}
-      <!-- <span ng-click='ctrl.inviteUser(board, user)'>Invite</span> -->
     </select>
-
     <button class="button-primary" ng-click='ctrl.inviteUser(board, ctrl.invitedUser)'>
       Invite to board
     </button>
