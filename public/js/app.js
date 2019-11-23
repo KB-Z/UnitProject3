@@ -10,6 +10,36 @@ app.controller('ProjectController', ['$http', function($http) {
     this.includePath = 'partials/' + path + '.html'
   };
 
+	this.allUsers = () => {
+		$http({
+			url:`users/`,
+			method: 'GET'
+		}).then( response => {
+			console.log('Received: ' + response.data);
+			this.foundUsers = response.data;
+		}, error => {
+			console.log('Received error: ' + error);
+		});
+	};
+	this.allUsers();
+
+	this.inviteUser = (inviteBoard, invitedUser) => {
+		$http({
+			url:`boards/invite/${inviteBoard._id}/${invitedUser._id}`,
+			method:'PUT',
+			data: {
+				board: inviteBoard,
+				user: invitedUser
+			}
+		}).then( response => {
+			console.log('Response from inviteUser(): ' + response.data);
+			alert(`${invitedUser.username} invited to ${inviteBoard.boardName}!`);
+		}, error => {
+			console.log('Received error: ' + error);
+			alert('Error!');
+		});
+	};
+
 	this.deleteUser = (user) => {
 		$http({
 			url:`users/${user._id}`,
@@ -84,7 +114,7 @@ app.controller('ProjectController', ['$http', function($http) {
       this.loggedInUser = false;
     })
   }
-
+	
   $http({
     method: 'GET',
     url: '/sessions'
@@ -93,8 +123,8 @@ app.controller('ProjectController', ['$http', function($http) {
       this.loggedInUser = response.data;
     }
   });
-
-  this.getBoards = () => {
+  
+	this.getBoards = () => {
     $http({
       url: '/boards',
       method: 'GET'
@@ -173,5 +203,11 @@ app.controller('ProjectController', ['$http', function($http) {
       console.log(error);
     });
   };
+/*=======================
+This is also getting called before the user has a chance
+to login or signup. So it's throwing an error.
+
 this.getBoards();
+==================================*/
+
 }]);
