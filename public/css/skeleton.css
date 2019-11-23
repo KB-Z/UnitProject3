@@ -369,6 +369,12 @@ form {
   float: right; }
 .u-pull-left {
   float: left; }
+.u-full-width-container {
+  width: 100%;
+  max-width: 100%;
+  clear: both;
+  margin: 0 auto;
+}
 
 
 /* Misc

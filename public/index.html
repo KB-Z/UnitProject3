@@ -14,10 +14,10 @@
   <title ng-non-bindable>{{prj3ct}}</title>
 </head>
 <body ng-controller="ProjectController as ctrl">
-  <div class="container">
+  <div class="container u-full-width-container">
     <ul class="u-full-width" ng-include="'partials/navigation.html'"></ul>
     <div class="row">
-      <h1 class="four columns offset-by-four" ng-non-bindable>{{prj3ct}}</h1>
+      <h1 class="four columns offset-by-four logo u-max-full-width" ng-non-bindable>{{prj3ct}}</h1>
     </div>
     <div class="row" ng-if="ctrl.loggedInUser === false">
       <div class="eight columns offset-by-two card" ng-include="'partials/signup.html'" ng-show="ctrl.signUpToggle"></div>
@@ -26,6 +26,9 @@
     <div class="row" ng-if="ctrl.loggedInUser !== false">
       <h2 class="six columns offset-by-three card">{{ctrl.loggedInUser.username}}'s Dashboard</h2>
       <div class="u-full-width" ng-include="'partials/dashboard.html'">
+
+      </div>
+      <div class="u-full-width" ng-show="ctrl.boardDetails" ng-include="'partials/board.html'">
 
       </div>
     </div>
