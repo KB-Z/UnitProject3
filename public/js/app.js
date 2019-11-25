@@ -131,19 +131,23 @@ this.addnewTaskClicked=false;
       this.loggedInUser = false;
     })
   }
-
+/////checking for every refresh//////
   $http({
     method: 'GET',
     url: '/sessions'
   }).then((response) => {
     if (response.data.username) {
       this.loggedInUser = response.data;
+      this.getBoards();
     }
   });
   ////////////////////////////////////////////////////
   ////////////////boards operations//////////////////////////
   ///////////////////////////////////////////////////////////
   this.getBoards = () => {
+    if(this.loggedInUser!=false){
+
+
     $http({
       url: '/boards',
       method: 'GET'
@@ -153,6 +157,7 @@ this.addnewTaskClicked=false;
       console.table(this.boards);
       // console.log(this.userBoards);
     });
+      }
   };
 
   this.createBoard = () => {
@@ -249,9 +254,9 @@ this.addnewTaskClicked=false;
 
   this.getBoards();
   ==================================*/
-  console.log(this.loggedInUser);
-if(this.loggedInUser!=false)
-this.getBoards();
+  //console.log(this.loggedInUser);
+
+
 
 
 }]);
