@@ -11,6 +11,8 @@ app.controller('ProjectController', ['$http', function($http) {
   this.newupdateTaskName = "";
   this.editTaskbtn=false;
 
+this.indexOfNewTaskfield=null;
+
   this.includePath = 'partials/menu.html'
   this.changeInclude = (path) => {
     this.includePath = 'partials/' + path + '.html'
@@ -200,6 +202,8 @@ app.controller('ProjectController', ['$http', function($http) {
       }
     }).then((response) => {
       this.getBoards();
+      this.newTaskName="";
+      this.indexOfNewTaskfield="";
     })
   }
 

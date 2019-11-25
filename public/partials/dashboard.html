@@ -14,9 +14,9 @@
         <input ng-model=ctrl.updateBoardName ng-keypress="($event.charCode===13)?ctrl.editBoardName(board._id):return" ng-disabled="ctrl.editBoardValue" ng-if="$index === ctrl.indexOfEditForm" class="transparentinput" />
       </span>
     </h2>
-    <ul ng-repeat="task in board.tasks track by task+$index">
+    <div ng-repeat="task in board.tasks track by task+$index">
 
-      <form ng-submit="ctrl.editTask(board,$index)">
+      <form class="eight columns offset-by-two" ng-submit="ctrl.editTask(board,$index)">
         <span>{{task}}</span>
         <!-- having a seperate mock button as its submitting thevalue and trying to edit at the same time -->
         <span ng-if="ctrl.indexOfEditTask!==$index || ctrl.editTaskbtn!==true">
@@ -33,18 +33,24 @@
         <button class="button-primary" ng-click="ctrl.deleteTask(board._id,$index)"><span class="lnr lnr-cross-circle"></span></button>
       </form>
       <!-- <li>{{board.assignedTo}}</li>-->
-    </ul>
+    </div>
     <form class="eight columns offset-by-two" ng-submit="ctrl.createTask(board)">
-      <label for="newTaskName">New Task:</label>
-      <input id="newTaskName" type="text" ng-model="ctrl.newTaskName">
-      <input class="button-primary" type="submit" value="New Task">
-      <button class="button-primary" ng-click='ctrl.deleteBoard(board)'>Delete Board</button>
-    </form>
+
+      <span ng-if="ctrl.indexOfNewTaskfield===$index">
+        <label for="newTaskName">New Task:</label>
+        <input id="newTaskName" type="text" ng-model="ctrl.newTaskName">
+        <input class="button-primary" type="submit" />
+      </span>
+
+    <span class="row" ng-click="ctrl.indexOfNewTaskfield=$index">
+      <a class="button-primary" >+ Add New Task</a>
+    </span>
+
+    <button class="button-primary" ng-click='ctrl.deleteBoard(board)'>Delete Board</button>
+</form>
 
     <div class="row">
-      <label for='Search by'>
-        <input type='text' placeholder='Search for User' ng-model='searchBox'>
-      </label>
+      <input type='text' placeholder='Search for User' ng-model='searchBox'>
       <select ng-model="ctrl.invitedUser" ng-options="user.username for user in ctrl.foundUsers | filter: searchBox">
         {{ctrl.invitedUser.username}}
       </select>
