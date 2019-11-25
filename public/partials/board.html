@@ -1,6 +1,6 @@
 <div class="row">
 
-  <h2 class="six columns offset-by-three card">
+  <h2 class="six columns offset-by-three card" ng-init="ctrl.updateBoardName=ctrl.boards[ctrl.clickedBoardId].boardName">
     <span ng-dblclick="ctrl.editBoardValue=true">
       <span ng-if="ctrl.editBoardValue===false">
         {{ctrl.boards[ctrl.clickedBoardId].boardName}}

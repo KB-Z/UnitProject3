@@ -2,7 +2,6 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const router = express.Router();
 const User = require('../models/users.js');
-
 router.get('/', (req, res) => {
 	User.find({},(err,foundUser) => {
 		console.log(foundUser);
@@ -21,7 +20,9 @@ router.get('/:userid', (req, res) => {
 
 router.post('/', (req, res) => {
   req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
+	//res.json(req.body);
   User.create(req.body, (err, createdUser) => {
+		if(err){ res.json(err); }
     res.json(createdUser);
   });
 });
