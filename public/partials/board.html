@@ -23,7 +23,7 @@
       </button>
     </span>
 
-    <input type="text" ng-if="$index === ctrl.indexOfEditTask" placeholder = {{task}} ng-model="ctrl.newupdateTaskName" />
+    <input type="text" ng-if="$index === ctrl.indexOfEditTask" ng-model="ctrl.newupdateTaskName" />
     <!-- button to initiate the actual edit -->
  <button ng-if="ctrl.indexOfEditTask===$index && ctrl.editTaskbtn===true " class="button-primary" type="submit"><span class="lnr lnr-pencil"></span>
     </button>
