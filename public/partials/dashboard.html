@@ -19,16 +19,15 @@
       <form class="eight columns offset-by-two" ng-submit="ctrl.editTask(board,$index)">
         <span>{{task}}</span>
         <!-- having a seperate mock button as its submitting thevalue and trying to edit at the same time -->
-        <span ng-if="ctrl.indexOfEditTask!==$index || ctrl.editTaskbtn!==true">
-          <button type="button" ng-click="ctrl.indexOfEditTask=$index;ctrl.editTaskbtn=true" class="button-primary">
+        <span ng-if="ctrl.indexOfEditTask!==task+$index || ctrl.editTaskbtn!==true">
+          <button type="button" ng-click="ctrl.indexOfEditTask=task+$index;ctrl.editTaskbtn=true" class="button-primary">
             <span class="lnr lnr-pencil"></span>
           </button>
         </span>
 
-        <input type="text" ng-if="$index === ctrl.indexOfEditTask" placeholder="{{task}}" ng-model="ctrl.newupdateTaskName" />
-        <!-- Zach - Added placeholder for edit so user can 'cancel' edit without removing the value from the field -->
+        <input type="text" ng-if="(task+$index) === ctrl.indexOfEditTask" placeholder = {{task}} ng-model="ctrl.newupdateTaskName" />
         <!-- button to initiate the actual edit -->
-        <button ng-if="ctrl.indexOfEditTask===$index && ctrl.editTaskbtn===true" class="button-primary" type="submit"><span class="lnr lnr-pencil"></span>
+        <button ng-if="ctrl.indexOfEditTask===(task+$index) && ctrl.editTaskbtn===true " class="button-primary" type="submit"><span class="lnr lnr-pencil"></span>
 
         </button>
         <button class="button-primary" ng-click="ctrl.deleteTask(board._id,$index)"><span class="lnr lnr-cross-circle"></span></button>
@@ -37,13 +36,13 @@
     </div>
     <form class="eight columns offset-by-two" ng-submit="ctrl.createTask(board)">
 
-      <span ng-if="ctrl.indexOfNewTaskfield===$index">
+      <span ng-if="ctrl.indexOfNewTaskfield===task+$index">
         <label for="newTaskName">New Task:</label>
         <input id="newTaskName" type="text" ng-model="ctrl.newTaskName">
         <input class="button-primary" type="submit" />
       </span>
 
-    <span class="row" ng-click="ctrl.indexOfNewTaskfield=$index">
+    <span class="row" ng-click="ctrl.indexOfNewTaskfield=task+$index">
       <a class="button-primary" >+ Add New Task</a>
     </span>
 
