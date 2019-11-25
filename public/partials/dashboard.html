@@ -25,9 +25,10 @@
           </button>
         </span>
 
-        <input type="text" ng-if="$index === ctrl.indexOfEditTask" ng-model="ctrl.newupdateTaskName" />
+        <input type="text" ng-if="$index === ctrl.indexOfEditTask" placeholder="{{task}}" ng-model="ctrl.newupdateTaskName" />
+        <!-- Zach - Added placeholder for edit so user can 'cancel' edit without removing the value from the field -->
         <!-- button to initiate the actual edit -->
-        <button ng-if="ctrl.indexOfEditTask===$index && ctrl.editTaskbtn===true " class="button-primary" type="submit"><span class="lnr lnr-pencil"></span>
+        <button ng-if="ctrl.indexOfEditTask===$index && ctrl.editTaskbtn===true" class="button-primary" type="submit"><span class="lnr lnr-pencil"></span>
 
         </button>
         <button class="button-primary" ng-click="ctrl.deleteTask(board._id,$index)"><span class="lnr lnr-cross-circle"></span></button>
