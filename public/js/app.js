@@ -6,12 +6,13 @@ app.controller('ProjectController', ['$http', function($http) {
   this.boards = [];
   this.indexOfEditForm=null;
   this.editBoardValue = true; ///variable to edit the board name
-
   this.indexOfEditTask=null;//variable to ensure only that task edit is shown
   this.newupdateTaskName = "";
   this.editTaskbtn=false;
-
   this.indexOfNewTaskfield=null;
+  this.showDetails = false;
+  this.indexOfBoard = null;
+
 
   this.includePath = 'partials/menu.html'
   this.changeInclude = (path) => {
@@ -19,6 +20,9 @@ app.controller('ProjectController', ['$http', function($http) {
   };
   this.toggleBoardEdit=()=>{
     this.editBoardValue = !this.editBoardValue;
+  }
+  this.showDetailsToggle = () => {
+    this.indexOfBoard = !this.indexOfBoard
   }
 
 
@@ -181,7 +185,6 @@ app.controller('ProjectController', ['$http', function($http) {
 
   }
 
-
   this.createTask = (board) => {
     $http({
       url: '/boards/addtasks/' + board._id,
@@ -226,8 +229,6 @@ app.controller('ProjectController', ['$http', function($http) {
       this.getBoards();
     })
   }
-
-
 
   this.deleteBoard = (board) => {
     $http({

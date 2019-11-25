@@ -1,0 +1,48 @@
+<div ng-show="ctrl.showDetails">  
+  <div ng-repeat="task in board.tasks track by task+$index">
+    <form class="eight columns offset-by-two" ng-submit="ctrl.editTask(board,$index)">
+      <span>{{task}}</span>
+      <span ng-if="ctrl.indexOfEditTask!==task+$index || ctrl.editTaskbtn!==true">
+        <button type="button" ng-click="ctrl.indexOfEditTask=task+$index;ctrl.editTaskbtn=true" class="button-primary">
+          <span class="lnr lnr-pencil"></span>
+        </button>
+      </span>
+      <input type="text" ng-if="(task+$index) === ctrl.indexOfEditTask" placeholder = {{task}} ng-model="ctrl.newupdateTaskName" />
+      <button ng-if="ctrl.indexOfEditTask===(task+$index) && ctrl.editTaskbtn===true " class="button-primary" type="submit"><span class="lnr lnr-pencil"></span>
+      </button>
+      <button class="button-primary" ng-click="ctrl.deleteTask(board._id,$index)"><span class="lnr lnr-cross-circle"></span></button>
+    </form>
+  </div>
+  <form class="eight columns offset-by-two" ng-submit="ctrl.createTask(board)">
+    <span ng-if="ctrl.indexOfNewTaskfield===task+$index">
+      <label for="newTaskName">New Task:</label>
+      <input id="newTaskName" type="text" ng-model="ctrl.newTaskName">
+      <input class="button-primary" type="submit" />
+    </span>
+    <span class="row" ng-click="ctrl.indexOfNewTaskfield=task+$index">
+      <a class="button-primary" >+ Add New Task</a>
+    </span>
+    <button class="button-primary" ng-click='ctrl.deleteBoard(board)'>Delete Board</button>
+  </form>
+  <div class="row">
+    <input type='text' placeholder='Search for User' ng-model='searchBox'>
+    <select ng-model="ctrl.invitedUser" ng-options="user.username for user in ctrl.foundUsers | filter: searchBox">
+      {{ctrl.invitedUser.username}}
+    </select>
+    <button class="button-primary" ng-click='ctrl.inviteUser(board, ctrl.invitedUser)'>
+      Invite to board
+    </button>
+  </div> -->
+  <!-- temporary spot for search/invite users to a board -Joe -->
+  <label for='Search by'>
+    <input type='text' placeholder='Search for User' ng-model='searchBox'>
+  </label>
+  <ul >
+    <li ng-repeat="user in ctrl.foundUsers | filter: searchBox">
+      {{user.username}} -
+      <button ng-click='ctrl.inviteUser(board, user)'>
+        Invite to board
+      </button>
+    </li>
+  </ul>
+</div>
