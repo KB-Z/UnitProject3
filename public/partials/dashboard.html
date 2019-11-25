@@ -6,35 +6,60 @@
 </form>
 <div class="ten columns offset-by-one card" ng-repeat="board in ctrl.boards">
   <div>
-    <h2><span ng-dblclick="ctrl.detailsToggle()">{{board.boardName}}</span></h2>
-     <ul ng-repeat="task in board.tasks track by task+$index">
-      <li>{{task}}</li>
-     <!-- <form ng-submit="ctrl.editTask(board,$index)">
-        <input type="text" ng-model="ctrl.newupdateTaskName">
-        <input type="submit" value="Update Task">
-      </form> <button ng-click="ctrl.deleteTask(board._id,$index)">Delete Task</button> -->
-      <!-- <li>{{board.assignedTo}}</li> -->
-    </ul>
-    <form class="eight columns offset-by-two" ng-submit="ctrl.createTask(board)">
-      <label for="newTaskName">New Task:</label>
-      <input id="newTaskName" type="text" ng-model="ctrl.newTaskName">
-      <input class="button-primary" type="submit" value="New Task">
-      <button class="button-primary" ng-click='ctrl.deleteBoard(board)'>Delete Board</button>
-    </form>
+    <h2>
+      <span ng-dblclick="ctrl.editBoardValue=false; ctrl.indexOfEditForm=$index">
+        <span ng-if="ctrl.indexOfEditForm!==$index || ctrl.editBoardValue!=false">
+          {{board.boardName}}
+        </span>
+        <input ng-model=ctrl.updateBoardName ng-keypress="($event.charCode===13)?ctrl.editBoardName(board._id):return" ng-disabled="ctrl.editBoardValue" ng-if="$index === ctrl.indexOfEditForm" class="transparentinput" />
+      </span>
+    </h2>
+    <div ng-repeat="task in board.tasks track by task+$index">
 
-<div class="row" >
-  <label for='Search by'>
-    <input type='text' placeholder='Search for User' ng-model='searchBox'>
-  </label>
-    <select ng-model="ctrl.invitedUser" ng-options="user.username for user in ctrl.foundUsers | filter: searchBox" >
-      {{ctrl.invitedUser.username}}
-    </select>
-    <button class="button-primary" ng-click='ctrl.inviteUser(board, ctrl.invitedUser)'>
-      Invite to board
-    </button>
-</div>
-		<!-- temporary spot for search/invite users to a board -Joe -->
-		<!-- <label for='Search by'>
+      <form class="eight columns offset-by-two" ng-submit="ctrl.editTask(board,$index)">
+        <span>{{task}}</span>
+        <!-- having a seperate mock button as its submitting thevalue and trying to edit at the same time -->
+        <span ng-if="ctrl.indexOfEditTask!==$index || ctrl.editTaskbtn!==true">
+          <button type="button" ng-click="ctrl.indexOfEditTask=$index;ctrl.editTaskbtn=true" class="button-primary">
+            <span class="lnr lnr-pencil"></span>
+          </button>
+        </span>
+
+        <input type="text" ng-if="$index === ctrl.indexOfEditTask" ng-model="ctrl.newupdateTaskName" />
+        <!-- button to initiate the actual edit -->
+        <button ng-if="ctrl.indexOfEditTask===$index && ctrl.editTaskbtn===true " class="button-primary" type="submit"><span class="lnr lnr-pencil"></span>
+
+        </button>
+        <button class="button-primary" ng-click="ctrl.deleteTask(board._id,$index)"><span class="lnr lnr-cross-circle"></span></button>
+      </form>
+      <!-- <li>{{board.assignedTo}}</li>-->
+    </div>
+    <form class="eight columns offset-by-two" ng-submit="ctrl.createTask(board)">
+
+      <span ng-if="ctrl.indexOfNewTaskfield===$index">
+        <label for="newTaskName">New Task:</label>
+        <input id="newTaskName" type="text" ng-model="ctrl.newTaskName">
+        <input class="button-primary" type="submit" />
+      </span>
+
+    <span class="row" ng-click="ctrl.indexOfNewTaskfield=$index">
+      <a class="button-primary" >+ Add New Task</a>
+    </span>
+
+    <button class="button-primary" ng-click='ctrl.deleteBoard(board)'>Delete Board</button>
+</form>
+
+    <div class="row">
+      <input type='text' placeholder='Search for User' ng-model='searchBox'>
+      <select ng-model="ctrl.invitedUser" ng-options="user.username for user in ctrl.foundUsers | filter: searchBox">
+        {{ctrl.invitedUser.username}}
+      </select>
+      <button class="button-primary" ng-click='ctrl.inviteUser(board, ctrl.invitedUser)'>
+        Invite to board
+      </button>
+    </div>
+    <!-- temporary spot for search/invite users to a board -Joe -->
+    <!-- <label for='Search by'>
 			<input type='text' placeholder='Search for User' ng-model='searchBox'>
 		</label>
 		<ul >
