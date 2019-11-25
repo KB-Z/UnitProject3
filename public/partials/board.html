@@ -18,7 +18,7 @@
     <span>{{task}}</span>
     <!-- having a seperate mock button as its submitting thevalue and trying to edit at the same time -->
     <span ng-if="ctrl.indexOfEditTask!==$index || ctrl.editTaskbtn!==true">
-      <button type="button" ng-click="ctrl.indexOfEditTask=$index;ctrl.editTaskbtn=true" class="button-primary">
+      <button type="button" ng-click="ctrl.indexOfEditTask=$index;ctrl.editTaskbtn=true;ctrl.newupdateTaskName=task" class="button-primary">
         <span class="lnr lnr-pencil"></span>
       </button>
     </span>
