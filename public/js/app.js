@@ -196,6 +196,7 @@ this.addnewTaskClicked=false;
       this.getBoards();
       this.newTaskName="";
       this.indexOfNewTaskfield="";
+      this.addnewTaskClicked=false;
     })
   }
 
@@ -248,8 +249,9 @@ this.addnewTaskClicked=false;
 
   this.getBoards();
   ==================================*/
-
-
+  console.log(this.loggedInUser);
+if(this.loggedInUser!=false)
+this.getBoards();
 
 
 }]);

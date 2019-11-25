@@ -3,7 +3,6 @@
 </div>
 
 <div class="row">
-
   <h2 class="six columns offset-by-three card" ng-init="ctrl.updateBoardName=ctrl.boards[ctrl.clickedBoardId].boardName">
     <span ng-dblclick="ctrl.editBoardValue=true">
       <span ng-if="ctrl.editBoardValue===false">
@@ -16,6 +15,19 @@
   <div class="row">
     <h4 class="six columns offset-by-three"></h4>
   </div>
+  <!-- Adding users to the board -->
+  <div class="row">
+    <div class="nine columns offset-by-three">
+      <input type='text' placeholder='Search for User' ng-model='searchBox'>
+      <select ng-model="ctrl.invitedUser" ng-options="user.username for user in ctrl.foundUsers | filter: searchBox">
+        {{ctrl.invitedUser.username}}
+      </select>
+      <button class="button-primary" ng-click='ctrl.inviteUser(ctrl.boards[ctrl.clickedBoardId], ctrl.invitedUser)'>
+        Invite to board
+      </button>
+    </div>
+  </div>
+  <!-- tasks population -->
   <div ng-repeat="task in ctrl.boards[ctrl.clickedBoardId].tasks">
 
     <form class="eight columns offset-by-two" ng-submit="ctrl.editTask(ctrl.boards[ctrl.clickedBoardId],$index)">
@@ -48,14 +60,15 @@
     </span>
 
     <span class="row" ng-if="!ctrl.addnewTaskClicked">
+      <div class="nine columns offset-by-four">
       <a class="button button-primary" ng-click="ctrl.addnewTaskClicked=true" ">+ Add New Task</a>
-</span>
+      </div>
+    </span>
 
-<div class=" row">
-        <button class="button-primary" ng-click='ctrl.deleteBoard(ctrl.boards[ctrl.clickedBoardId]);ctrl.boardPartialShow=false'>DELETE BOARD</button>
-
+    <div class=" row">
+        <div class="nine columns offset-by-four">
+          <button class="button-primary" ng-click='ctrl.deleteBoard(ctrl.boards[ctrl.clickedBoardId]);ctrl.boardPartialShow=false'>DELETE BOARD</button>
+        </div>
 </div>
 </form>
-
-
 </div>

@@ -9,6 +9,7 @@
     <h2 ng-dblclick="ctrl.clickedBoardId=$index; ctrl.boardPartialShow=true">
         {{board.boardName}}
     </h2>
+
   </div>
 </div>
 <div ng-include="'./partials/board.html'" ng-if="ctrl.boardPartialShow===true">
@@ -60,11 +61,8 @@
       <a class="button-primary" >+ Add New Task</a>
     </span>
 
-    <button class="button-primary" ng-click='ctrl.deleteBoard(board)'>Delete Board</button>
-</form>
-
-
     <div class="row">
+      <div class="nine columns offset-by-three">
       <input type='text' placeholder='Search for User' ng-model='searchBox'>
       <select ng-model="ctrl.invitedUser" ng-options="user.username for user in ctrl.foundUsers | filter: searchBox">
         {{ctrl.invitedUser.username}}
@@ -72,7 +70,10 @@
       <button class="button-primary" ng-click='ctrl.inviteUser(board, ctrl.invitedUser)'>
         Invite to board
       </button>
+        </div>
     </div>
 
-  </div>
-</div> -->
+    <button class="button-primary" ng-click='ctrl.deleteBoard(board)'>Delete Board</button>
+</form>
+
+-->
