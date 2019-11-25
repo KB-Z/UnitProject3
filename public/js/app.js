@@ -11,7 +11,7 @@ app.controller('ProjectController', ['$http', function($http) {
   this.newupdateTaskName = "";
   this.editTaskbtn=false;
 
-this.indexOfNewTaskfield=null;
+  this.indexOfNewTaskfield=null;
 
   this.includePath = 'partials/menu.html'
   this.changeInclude = (path) => {
