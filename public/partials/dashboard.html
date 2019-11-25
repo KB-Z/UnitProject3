@@ -6,10 +6,8 @@
     <button type="button" class="five columns button-primary" ng-click="ctrl.getBoards()">Refresh Boards</button>
   </form>
   <div class="ten columns offset-by-one card" ng-repeat="board in ctrl.boards">
-    <h2>
-      <span ng-dblclick="ctrl.clickedBoardId=$index; ctrl.boardPartialShow=true">
+    <h2 ng-dblclick="ctrl.clickedBoardId=$index; ctrl.boardPartialShow=true">
         {{board.boardName}}
-        <span>
     </h2>
   </div>
 </div>
