@@ -8,19 +8,30 @@
   <div>
     <h2>
       <span ng-dblclick="ctrl.editBoardValue=false; ctrl.indexOfEditForm=$index">
-        <span  ng-if="ctrl.indexOfEditForm!==$index || ctrl.editBoardValue!=false">
+        <span ng-if="ctrl.indexOfEditForm!==$index || ctrl.editBoardValue!=false">
           {{board.boardName}}
         </span>
         <input ng-model=ctrl.updateBoardName ng-keypress="($event.charCode===13)?ctrl.editBoardName(board._id):return" ng-disabled="ctrl.editBoardValue" ng-if="$index === ctrl.indexOfEditForm" class="transparentinput" />
-        <!-- ng-init="ctrl.updatedBoardName(board[$index].boardsName)" -->
       </span>
     </h2>
     <ul ng-repeat="task in board.tasks track by task+$index">
-      <li>{{task}}</li>
+
       <form ng-submit="ctrl.editTask(board,$index)">
-        <input type="text" ng-model="ctrl.newupdateTaskName">
-        <input type="submit" value="Update Task">
-      </form> <button ng-click="ctrl.deleteTask(board._id,$index)">Delete Task</button>
+        <span>{{task}}</span>
+        <!-- having a seperate mock button as its submitting thevalue and trying to edit at the same time -->
+        <span ng-if="ctrl.indexOfEditTask!==$index || ctrl.editTaskbtn!==true">
+          <button type="button" ng-click="ctrl.indexOfEditTask=$index;ctrl.editTaskbtn=true" class="button-primary">
+            <span class="lnr lnr-pencil"></span>
+          </button>
+        </span>
+
+        <input type="text" ng-if="$index === ctrl.indexOfEditTask" ng-model="ctrl.newupdateTaskName" />
+        <!-- button to initiate the actual edit -->
+        <button ng-if="ctrl.indexOfEditTask===$index && ctrl.editTaskbtn===true " class="button-primary" type="submit"><span class="lnr lnr-pencil"></span>
+
+        </button>
+        <button class="button-primary" ng-click="ctrl.deleteTask(board._id,$index)"><span class="lnr lnr-cross-circle"></span></button>
+      </form>
       <!-- <li>{{board.assignedTo}}</li>-->
     </ul>
     <form class="eight columns offset-by-two" ng-submit="ctrl.createTask(board)">
