@@ -1,22 +1,20 @@
-
-
-<div ng-if= "ctrl.boardPartialShow===false">
+<div ng-if="ctrl.boardPartialShow===false">
   <form class="eight columns offset-by-two card" ng-submit="ctrl.createBoard()">
     <label class="four columns offset-by-four" for="boardName">New Board Name:</label>
     <input class="eight columns offset-by-two" type="text" id="boardName" ng-model="ctrl.newBoardName">
     <input type="submit" class="five columns button-primary offset-by-one" value="Create Board">
     <button type="button" class="five columns button-primary" ng-click="ctrl.getBoards()">Refresh Boards</button>
   </form>
-<div class="ten columns offset-by-one card" ng-repeat="board in ctrl.boards">
-<h2>
-  <span ng-dblclick="ctrl.clickedBoardId=$index; ctrl.boardPartialShow=true" >
-{{board.boardName}}
-  <span>
-</h2>
-</div>
-</div>
-<div ng-include="'./partials/board.html'" ng-if= "ctrl.boardPartialShow===true">
+  <div class="ten columns offset-by-one card" ng-repeat="board in ctrl.boards">
+    <h2>
+      <span ng-dblclick="ctrl.clickedBoardId=$index; ctrl.boardPartialShow=true">
+        {{board.boardName}}
+        <span>
+    </h2>
   </div>
+</div>
+<div ng-include="'./partials/board.html'" ng-if="ctrl.boardPartialShow===true">
+</div>
 
 <!-- Old Stuffs -->
 <!--
@@ -36,22 +34,22 @@
 
       <form class="eight columns offset-by-two" ng-submit="ctrl.editTask(board,$index)">
         <span>{{task}}</span> -->
-        <!-- having a seperate mock button as its submitting thevalue and trying to edit at the same time -->
-        <!-- <span ng-if="ctrl.indexOfEditTask!==task+$index || ctrl.editTaskbtn!==true">
+<!-- having a seperate mock button as its submitting thevalue and trying to edit at the same time -->
+<!-- <span ng-if="ctrl.indexOfEditTask!==task+$index || ctrl.editTaskbtn!==true">
           <button type="button" ng-click="ctrl.indexOfEditTask=task+$index;ctrl.editTaskbtn=true" class="button-primary">
             <span class="lnr lnr-pencil"></span>
           </button>
         </span>
 
         <input type="text" ng-if="(task+$index) === ctrl.indexOfEditTask" placeholder = {{task}} ng-model="ctrl.newupdateTaskName" /> -->
-        <!-- button to initiate the actual edit -->
-        <!-- <button ng-if="ctrl.indexOfEditTask===(task+$index) && ctrl.editTaskbtn===true " class="button-primary" type="submit"><span class="lnr lnr-pencil"></span>
+<!-- button to initiate the actual edit -->
+<!-- <button ng-if="ctrl.indexOfEditTask===(task+$index) && ctrl.editTaskbtn===true " class="button-primary" type="submit"><span class="lnr lnr-pencil"></span>
 
         </button>
         <button class="button-primary" ng-click="ctrl.deleteTask(board._id,$index)"><span class="lnr lnr-cross-circle"></span></button>
       </form> -->
-      <!-- <li>{{board.assignedTo}}</li>-->
-    <!-- </div>
+<!-- <li>{{board.assignedTo}}</li>-->
+<!-- </div>
     <form class="eight columns offset-by-two" ng-submit="ctrl.createTask(board)">
 
       <span ng-if="ctrl.indexOfNewTaskfield===task+$index">
