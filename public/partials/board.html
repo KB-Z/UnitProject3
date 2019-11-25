@@ -1,0 +1,55 @@
+<div class="row">
+
+  <h2 class="six columns offset-by-three card">
+    <span ng-dblclick="ctrl.editBoardValue=true">
+      <span ng-if="ctrl.editBoardValue===false">
+        {{ctrl.boards[ctrl.clickedBoardId].boardName}}
+      </span>
+      <input ng-model=ctrl.updateBoardName ng-keypress="($event.charCode===13)?ctrl.editBoardName(ctrl.boards[ctrl.clickedBoardId]._id):return" ng-disabled="!ctrl.editBoardValue" ng-if="ctrl.editBoardValue===true"  class="transparentinput" />
+    </span>
+  </h2>
+
+<!-- <h2 class="six columns offset-by-three card">
+  {{ctrl.boards[ctrl.clickedBoardId].boardName}}
+</h2> -->
+<div ng-repeat="task in ctrl.boards[ctrl.clickedBoardId].tasks">
+
+  <form class="eight columns offset-by-two" ng-submit="ctrl.editTask(ctrl.boards[ctrl.clickedBoardId],$index)">
+    <span>{{task}}</span>
+    <!-- having a seperate mock button as its submitting thevalue and trying to edit at the same time -->
+    <span ng-if="ctrl.indexOfEditTask!==$index || ctrl.editTaskbtn!==true">
+      <button type="button" ng-click="ctrl.indexOfEditTask=$index;ctrl.editTaskbtn=true" class="button-primary">
+        <span class="lnr lnr-pencil"></span>
+      </button>
+    </span>
+
+    <input type="text" ng-if="$index === ctrl.indexOfEditTask" placeholder = {{task}} ng-model="ctrl.newupdateTaskName" />
+    <!-- button to initiate the actual edit -->
+ <button ng-if="ctrl.indexOfEditTask===$index && ctrl.editTaskbtn===true " class="button-primary" type="submit"><span class="lnr lnr-pencil"></span>
+    </button>
+    <button class="button-primary" ng-click="ctrl.deleteTask(ctrl.boards[ctrl.clickedBoardId]._id,$index)"> <span class="lnr lnr-cross"></span>
+    </button>
+  </form>
+
+</div>
+
+<form class="eight columns offset-by-two" ng-submit="ctrl.createTask(ctrl.boards[ctrl.clickedBoardId])">
+
+  <span ng-if="ctrl.addnewTaskClicked">
+    <label for="newTaskName">New Task:</label>
+    <input id="newTaskName" type="text" ng-model="ctrl.newTaskName">
+    <input class="button-primary" type="submit" />
+  </span>
+
+<span class="row" ng-if="!ctrl.addnewTaskClicked" >
+  <a class="button-primary" ng-click="ctrl.addnewTaskClicked=true" ">+ Add New Task</a>
+</span>
+
+<div class="row">
+  <button class="button-primary" ng-click='ctrl.deleteBoard(ctrl.boards[ctrl.clickedBoardId]);ctrl.boardPartialShow=false'>DELETE BOARD</button>
+
+</div>
+</form>
+
+
+</div>

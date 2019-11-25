@@ -17,8 +17,22 @@ router.get('/',(req,res) => {
 		};
 	});
 });
-/*
-router.get('/', (req, res) => {
+
+router.get('/:boardId', (req, res) => {
+
+  console.log('Entered GET route for boards');
+  console.log('Using the following board id: ' + req.params.boardId);
+
+	Boards.findById(req.params.boardId, (error, foundBoard) => {
+		console.log('found board: ' + foundBoard);
+
+			res.json(foundBoard);
+		
+	});
+
+
+
+
   console.log('Entered GET route for boards');
   console.log('Using the following user id: ' + req.session.user._id);
   Boards.find({
@@ -28,7 +42,7 @@ router.get('/', (req, res) => {
     res.json(foundBoards);
   })
 })
-*/
+
 
 //to create new boards
 router.post('/', (req, res) => {

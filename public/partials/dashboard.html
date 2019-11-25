@@ -1,39 +1,57 @@
-<form class="eight columns offset-by-two card" ng-submit="ctrl.createBoard()">
-  <label class="four columns offset-by-four" for="boardName">New Board Name:</label>
-  <input class="eight columns offset-by-two" type="text" id="boardName" ng-model="ctrl.newBoardName">
-  <input type="submit" class="five columns button-primary offset-by-one" value="Create Board">
-  <button type="button" class="five columns button-primary" ng-click="ctrl.getBoards()">Refresh Boards</button>
-</form>
+
+
+<div ng-if= "ctrl.boardPartialShow===false">
+  <form class="eight columns offset-by-two card" ng-submit="ctrl.createBoard()">
+    <label class="four columns offset-by-four" for="boardName">New Board Name:</label>
+    <input class="eight columns offset-by-two" type="text" id="boardName" ng-model="ctrl.newBoardName">
+    <input type="submit" class="five columns button-primary offset-by-one" value="Create Board">
+    <button type="button" class="five columns button-primary" ng-click="ctrl.getBoards()">Refresh Boards</button>
+  </form>
+<div class="ten columns offset-by-one card" ng-repeat="board in ctrl.boards">
+<h2>
+  <span ng-dblclick="ctrl.clickedBoardId=$index; ctrl.boardPartialShow=true" >
+{{board.boardName}}
+  <span>
+</h2>
+</div>
+</div>
+<div ng-include="'./partials/board.html'" ng-if= "ctrl.boardPartialShow===true">
+  </div>
+
+<!-- Old Stuffs -->
+<!--
 <div class="ten columns offset-by-one card" ng-repeat="board in ctrl.boards">
   <div>
     <h2>
       <span ng-dblclick="ctrl.editBoardValue=false; ctrl.indexOfEditForm=$index">
         <span ng-if="ctrl.indexOfEditForm!==$index || ctrl.editBoardValue!=false">
-          {{board.boardName}}
+          {{ctrl.boards[ctrl.clickedBoardId].boardName}}
         </span>
         <input ng-model=ctrl.updateBoardName ng-keypress="($event.charCode===13)?ctrl.editBoardName(board._id):return" ng-disabled="ctrl.editBoardValue" ng-if="$index === ctrl.indexOfEditForm" class="transparentinput" />
       </span>
     </h2>
-    <div ng-repeat="task in board.tasks track by task+$index">
+
+
+    <div ng-repeat="task in ctrl.boards[ctrl.clickedBoardId].tasks track by task+$index">
 
       <form class="eight columns offset-by-two" ng-submit="ctrl.editTask(board,$index)">
-        <span>{{task}}</span>
+        <span>{{task}}</span> -->
         <!-- having a seperate mock button as its submitting thevalue and trying to edit at the same time -->
-        <span ng-if="ctrl.indexOfEditTask!==task+$index || ctrl.editTaskbtn!==true">
+        <!-- <span ng-if="ctrl.indexOfEditTask!==task+$index || ctrl.editTaskbtn!==true">
           <button type="button" ng-click="ctrl.indexOfEditTask=task+$index;ctrl.editTaskbtn=true" class="button-primary">
             <span class="lnr lnr-pencil"></span>
           </button>
         </span>
 
-        <input type="text" ng-if="(task+$index) === ctrl.indexOfEditTask" placeholder = {{task}} ng-model="ctrl.newupdateTaskName" />
+        <input type="text" ng-if="(task+$index) === ctrl.indexOfEditTask" placeholder = {{task}} ng-model="ctrl.newupdateTaskName" /> -->
         <!-- button to initiate the actual edit -->
-        <button ng-if="ctrl.indexOfEditTask===(task+$index) && ctrl.editTaskbtn===true " class="button-primary" type="submit"><span class="lnr lnr-pencil"></span>
+        <!-- <button ng-if="ctrl.indexOfEditTask===(task+$index) && ctrl.editTaskbtn===true " class="button-primary" type="submit"><span class="lnr lnr-pencil"></span>
 
         </button>
         <button class="button-primary" ng-click="ctrl.deleteTask(board._id,$index)"><span class="lnr lnr-cross-circle"></span></button>
-      </form>
+      </form> -->
       <!-- <li>{{board.assignedTo}}</li>-->
-    </div>
+    <!-- </div>
     <form class="eight columns offset-by-two" ng-submit="ctrl.createTask(board)">
 
       <span ng-if="ctrl.indexOfNewTaskfield===task+$index">
@@ -49,6 +67,7 @@
     <button class="button-primary" ng-click='ctrl.deleteBoard(board)'>Delete Board</button>
 </form>
 
+
     <div class="row">
       <input type='text' placeholder='Search for User' ng-model='searchBox'>
       <select ng-model="ctrl.invitedUser" ng-options="user.username for user in ctrl.foundUsers | filter: searchBox">
@@ -58,17 +77,6 @@
         Invite to board
       </button>
     </div>
-    <!-- temporary spot for search/invite users to a board -Joe -->
-    <!-- <label for='Search by'>
-			<input type='text' placeholder='Search for User' ng-model='searchBox'>
-		</label>
-		<ul >
-    	<li ng-repeat="user in ctrl.foundUsers | filter: searchBox">
-				{{user.username}} -
-				<button ng-click='ctrl.inviteUser(board, user)'>
-					Invite to board
-				</button>
-			</li>
-		</ul> -->
+
   </div>
-</div>
+</div> -->

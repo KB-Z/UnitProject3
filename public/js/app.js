@@ -4,8 +4,11 @@ app.controller('ProjectController', ['$http', function($http) {
   this.loggedInUser = false;
   this.signUpToggle = false;
   this.boards = [];
+  this.clickedBoardId="";
+this.boardPartialShow=false;
+this.addnewTaskClicked=false;
   this.indexOfEditForm=null;
-  this.editBoardValue = true; ///variable to edit the board name
+  this.editBoardValue = false; ///variable to edit the board name
 
   this.indexOfEditTask=null;//variable to ensure only that task edit is shown
   this.newupdateTaskName = "";
@@ -175,7 +178,7 @@ app.controller('ProjectController', ['$http', function($http) {
     }).then((response) => {
       this.getBoards();
       this.indexOfEditForm=null;
-      this.editBoardValue = true;
+      this.editBoardValue = false;
     })
 
 
@@ -197,7 +200,7 @@ app.controller('ProjectController', ['$http', function($http) {
   }
 
   this.editTask = (board, taskid) => {
-    console.log("inside task edit");
+    console.log("inside task edit",taskid);
     board.tasks[taskid] = this.newupdateTaskName;
     console.log("board object with updated task", board);
     $http({
@@ -245,5 +248,8 @@ app.controller('ProjectController', ['$http', function($http) {
 
   this.getBoards();
   ==================================*/
+
+
+
 
 }]);
