@@ -6,14 +6,22 @@
 </form>
 <div class="ten columns offset-by-one card" ng-repeat="board in ctrl.boards">
   <div>
-    <h2><span ng-dblclick="ctrl.detailsToggle()">{{board.boardName}}</span></h2>
-     <ul ng-repeat="task in board.tasks track by task+$index">
+    <h2>
+      <span ng-dblclick="ctrl.editBoardValue=false; ctrl.indexOfEditForm=$index">
+        <span  ng-if="ctrl.indexOfEditForm!==$index || ctrl.editBoardValue!=false">
+          {{board.boardName}}
+        </span>
+        <input ng-model=ctrl.updateBoardName ng-keypress="($event.charCode===13)?ctrl.editBoardName(board._id):return" ng-disabled="ctrl.editBoardValue" ng-if="$index === ctrl.indexOfEditForm" class="transparentinput" />
+        <!-- ng-init="ctrl.updatedBoardName(board[$index].boardsName)" -->
+      </span>
+    </h2>
+    <ul ng-repeat="task in board.tasks track by task+$index">
       <li>{{task}}</li>
-     <!-- <form ng-submit="ctrl.editTask(board,$index)">
+      <form ng-submit="ctrl.editTask(board,$index)">
         <input type="text" ng-model="ctrl.newupdateTaskName">
         <input type="submit" value="Update Task">
-      </form> <button ng-click="ctrl.deleteTask(board._id,$index)">Delete Task</button> -->
-      <!-- <li>{{board.assignedTo}}</li> -->
+      </form> <button ng-click="ctrl.deleteTask(board._id,$index)">Delete Task</button>
+      <!-- <li>{{board.assignedTo}}</li>-->
     </ul>
     <form class="eight columns offset-by-two" ng-submit="ctrl.createTask(board)">
       <label for="newTaskName">New Task:</label>
@@ -22,19 +30,19 @@
       <button class="button-primary" ng-click='ctrl.deleteBoard(board)'>Delete Board</button>
     </form>
 
-<div class="row" >
-  <label for='Search by'>
-    <input type='text' placeholder='Search for User' ng-model='searchBox'>
-  </label>
-    <select ng-model="ctrl.invitedUser" ng-options="user.username for user in ctrl.foundUsers | filter: searchBox" >
-      {{ctrl.invitedUser.username}}
-    </select>
-    <button class="button-primary" ng-click='ctrl.inviteUser(board, ctrl.invitedUser)'>
-      Invite to board
-    </button>
-</div>
-		<!-- temporary spot for search/invite users to a board -Joe -->
-		<!-- <label for='Search by'>
+    <div class="row">
+      <label for='Search by'>
+        <input type='text' placeholder='Search for User' ng-model='searchBox'>
+      </label>
+      <select ng-model="ctrl.invitedUser" ng-options="user.username for user in ctrl.foundUsers | filter: searchBox">
+        {{ctrl.invitedUser.username}}
+      </select>
+      <button class="button-primary" ng-click='ctrl.inviteUser(board, ctrl.invitedUser)'>
+        Invite to board
+      </button>
+    </div>
+    <!-- temporary spot for search/invite users to a board -Joe -->
+    <!-- <label for='Search by'>
 			<input type='text' placeholder='Search for User' ng-model='searchBox'>
 		</label>
 		<ul >

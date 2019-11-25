@@ -4,69 +4,87 @@ app.controller('ProjectController', ['$http', function($http) {
   this.loggedInUser = false;
   this.signUpToggle = false;
   this.boards = [];
-  this.newupdateTaskName="";
+  this.indexOfEditForm=null;
+  this.editBoardValue = true; ///variable to edit the board name
+  this.newupdateTaskName = "";
   this.includePath = 'partials/menu.html'
   this.changeInclude = (path) => {
     this.includePath = 'partials/' + path + '.html'
   };
+  this.toggleBoardEdit=()=>{
+    this.editBoardValue = !this.editBoardValue;
+  }
+///inittialize all text box variable//////////
+//
+// ($scope) => {
+//   $scope.updatedBoardName=function(boardName){
+//     $scope.updateBoardName=boardName;
+//   }
+// }
+//
+// boardNameWatch= $scope.$watch('',function()  {
+//
+// })
 
-	this.allUsers = () => {
-		$http({
-			url:`users/`,
-			method: 'GET'
-		}).then( response => {
-			console.log('Received: ' + response.data);
-			this.foundUsers = response.data;
-		}, error => {
-			console.log('Received error: ' + error);
-		});
-	};
-	this.allUsers();
 
-	this.inviteUser = (inviteBoard, invitedUser) => {
+
+  this.allUsers = () => {
+    $http({
+      url: `users/`,
+      method: 'GET'
+    }).then(response => {
+      console.log('Received: ' + response.data);
+      this.foundUsers = response.data;
+    }, error => {
+      console.log('Received error: ' + error);
+    });
+  };
+  this.allUsers();
+
+  this.inviteUser = (inviteBoard, invitedUser) => {
     console.log(invitedUser);
-		$http({
-			url:`boards/invite/${inviteBoard._id}/${invitedUser._id}`,
-			method:'PUT',
-			data: {
-				board: inviteBoard,
-				user: invitedUser
-			}
-		}).then( response => {
-			console.log('Response from inviteUser(): ' + response.data);
-			alert(`${invitedUser.username} invited to ${inviteBoard.boardName}!`);
-		}, error => {
-			console.log('Received error: ' + error);
-			alert('Error!');
-		});
-	};
+    $http({
+      url: `boards/invite/${inviteBoard._id}/${invitedUser._id}`,
+      method: 'PUT',
+      data: {
+        board: inviteBoard,
+        user: invitedUser
+      }
+    }).then(response => {
+      console.log('Response from inviteUser(): ' + response.data);
+      alert(`${invitedUser.username} invited to ${inviteBoard.boardName}!`);
+    }, error => {
+      console.log('Received error: ' + error);
+      alert('Error!');
+    });
+  };
 
-	this.deleteUser = (user) => {
-		$http({
-			url:`users/${user._id}`,
-			method:'DELETE'
-		}).then( response => {
-			this.loggedInUser = false;
-		}, error => {
-			console.log(error);
-			this.loggedInUser = false;
-		});
-	};
+  this.deleteUser = (user) => {
+    $http({
+      url: `users/${user._id}`,
+      method: 'DELETE'
+    }).then(response => {
+      this.loggedInUser = false;
+    }, error => {
+      console.log(error);
+      this.loggedInUser = false;
+    });
+  };
 
-	this.editUser = (user) => {
-		$http({
-			url:`users/${user._id}`,
-			method:'PUT',
-			data: {
-				username: this.editUsername
-			}
-		}).then( response => {
-			this.loggedInUser = response.data;
-		}, error => {
-			console.log(error);
-			this.loggedInUser = false;
-		});
-	};
+  this.editUser = (user) => {
+    $http({
+      url: `users/${user._id}`,
+      method: 'PUT',
+      data: {
+        username: this.editUsername
+      }
+    }).then(response => {
+      this.loggedInUser = response.data;
+    }, error => {
+      console.log(error);
+      this.loggedInUser = false;
+    });
+  };
 
   this.signUp = () => {
     $http({
@@ -124,18 +142,16 @@ app.controller('ProjectController', ['$http', function($http) {
       this.loggedInUser = response.data;
     }
   });
-
-	this.getBoards = () => {
+  ////////////////////////////////////////////////////
+  ////////////////boards operations//////////////////////////
+  ///////////////////////////////////////////////////////////
+  this.getBoards = () => {
     $http({
       url: '/boards',
       method: 'GET'
     }).then((response) => {
       this.boards = response.data;
-      // angular.forEach(response.data, (boards) => {
-      //   console.log('Assigned ID from board' + boards.assignedTo);
-      //   console.log('Assigned Task(s) from board' + boards.tasks);
-      //   this.userBoards = boards.assignedTo
-      // });
+
       console.table(this.boards);
       // console.log(this.userBoards);
     });
@@ -152,11 +168,28 @@ app.controller('ProjectController', ['$http', function($http) {
       this.getBoards();
     })
   }
+//////////////you were working on this////////////
+  this.editBoardName = (boardid) => {
+    console.log("trying to edit the name?", this.updateBoardName);
+    $http({
+      url: '/boards/update/' + boardid,
+      method: 'PUT',
+      data: {
+        boardName: this.updateBoardName
+      }
+    }).then((response) => {
+      this.getBoards();
+      this.indexOfEditForm=null;
+      this.editBoardValue = true;
+    })
+
+
+  }
+
 
   this.createTask = (board) => {
-    //console.log(board);
     $http({
-      url: '/boards/addtasks/' + board._id ,
+      url: '/boards/addtasks/' + board._id,
       method: 'PUT',
       data: {
         tasks: this.newTaskName
@@ -169,15 +202,15 @@ app.controller('ProjectController', ['$http', function($http) {
   this.editTask = (board, taskid) => {
     console.log("inside task edit");
     board.tasks[taskid] = this.newupdateTaskName;
-    console.log("board object with updated task",board);
+    console.log("board object with updated task", board);
     $http({
-      url:'/boards/updatetasks/' ,
-      method:'PUT',
-      data:{
-        board:board
+      url: '/boards/updatetasks/',
+      method: 'PUT',
+      data: {
+        board: board
       }
     }).then((response) => {
-    	this.getBoards();
+      this.getBoards();
     })
   }
 
@@ -185,10 +218,10 @@ app.controller('ProjectController', ['$http', function($http) {
     console.log("inside task deleteion");
     console.log(boardid, taskid);
     $http({
-      url:'/boards/deletetasks/' + boardid+'/'+taskid,
-      method:'DELETE'
+      url: '/boards/deletetasks/' + boardid + '/' + taskid,
+      method: 'DELETE'
     }).then((response) => {
-    	this.getBoards();
+      this.getBoards();
     })
   }
 
@@ -204,11 +237,11 @@ app.controller('ProjectController', ['$http', function($http) {
       console.log(error);
     });
   };
-/*=======================
-This is also getting called before the user has a chance
-to login or signup. So it's throwing an error.
+  /*=======================
+  This is also getting called before the user has a chance
+  to login or signup. So it's throwing an error.
 
-this.getBoards();
-==================================*/
+  this.getBoards();
+  ==================================*/
 
 }]);

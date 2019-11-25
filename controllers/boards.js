@@ -75,7 +75,9 @@ router.put('/update/:id', (req, res) => {
   Boards.findByIdAndUpdate(req.params.id, req.body, {
     new: true
   }, (error, updatedBoard) => {
+		console.log(updatedBoard);
     res.json(updatedBoard);
+
   });
 });
 
