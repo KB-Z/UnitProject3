@@ -20,17 +20,6 @@ this.indexOfNewTaskfield=null;
   this.toggleBoardEdit=()=>{
     this.editBoardValue = !this.editBoardValue;
   }
-///inittialize all text box variable//////////
-//
-// ($scope) => {
-//   $scope.updatedBoardName=function(boardName){
-//     $scope.updateBoardName=boardName;
-//   }
-// }
-//
-// boardNameWatch= $scope.$watch('',function()  {
-//
-// })
 
 
 
