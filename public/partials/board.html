@@ -1,4 +1,8 @@
 <div class="row">
+  <h4 class="six columns offset-by-three"></h4>
+</div>
+
+<div class="row">
 
   <h2 class="six columns offset-by-three card" ng-init="ctrl.updateBoardName=ctrl.boards[ctrl.clickedBoardId].boardName">
     <span ng-dblclick="ctrl.editBoardValue=true">
@@ -8,7 +12,10 @@
       <input ng-model=ctrl.updateBoardName ng-keypress="($event.charCode===13)?ctrl.editBoardName(ctrl.boards[ctrl.clickedBoardId]._id):return" ng-disabled="!ctrl.editBoardValue" ng-if="ctrl.editBoardValue===true" class="transparentinput" />
     </span>
   </h2>
-  <br />
+  <!-- just for spacing -->
+  <div class="row">
+    <h4 class="six columns offset-by-three"></h4>
+  </div>
   <div ng-repeat="task in ctrl.boards[ctrl.clickedBoardId].tasks">
 
     <form class="eight columns offset-by-two" ng-submit="ctrl.editTask(ctrl.boards[ctrl.clickedBoardId],$index)">
@@ -22,7 +29,7 @@
         </button>
       </span>
       <div class="eight columns offset-by-one">
-        <input type="text" ng-if="$index === ctrl.indexOfEditTask" ng-model="ctrl.newupdateTaskName" class="transparentinput" />
+        <input type="text" ng-if="$index === ctrl.indexOfEditTask" ng-model="ctrl.newupdateTaskName" class="u-full-width" />
         <!-- button to initiate the actual edit -->
       </div>
       <button ng-if="ctrl.indexOfEditTask===$index && ctrl.editTaskbtn===true " class="button" type="submit"><span class="lnr lnr-pencil"></span>
