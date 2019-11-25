@@ -88,12 +88,13 @@ app.controller('ProjectController', ['$http', function($http) {
       data: {
         username: this.signupUsername,
         password: this.signupPassword,
-        boards: this.boardsId,
-        team: this.signupTeam
       }
     }).then((response) => {
-      this.loggedInUser = response.data
-    })
+			console.log('Received: ' + response.data);
+      this.loggedInUser = response.data;
+    }, error => {
+			console.log('Received error: ' + error);
+		});
   }
 
   this.login = () => {
