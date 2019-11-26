@@ -33,6 +33,7 @@ router.post('/', (req, res) => {
 		} else {
 			if(error.code==11000){
 				console.log('User exists.Please login');
+				res.json(error);
 			}else
 			console.log(error);
 		};
