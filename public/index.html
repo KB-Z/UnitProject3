@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" ng-app="prj3ct">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,7 +19,7 @@
   <div class="u-full-width-container">
     <ul class="u-full-width" ng-include="'partials/navigation.html'"></ul>
     <div class="row">
-      <h1 class="col-lg-2 col-lg-offset-5" ng-non-bindable>{{prj3ct}}</h1>
+      <h1  class="container-fluid" ng-non-bindable>{{prj3ct}}</h1>
     </div>
     <div class="row" ng-if="ctrl.loggedInUser === false">
       <div class="col-lg-2 col-lg-offset-2 card" ng-include="'partials/login.html'" ng-show="!ctrl.signUpToggle"></div>
@@ -27,7 +28,6 @@
     <div class="row center-lg" ng-if="ctrl.loggedInUser !== false">
       <h2 class="col-lg-3 col-lg-offset-2 card">{{ctrl.loggedInUser.username}}'s Dashboard</h2>
       <div class="u-full-width" ng-include="'partials/dashboard.html'">
-
       </div>
       <div class="u-full-width" ng-show="ctrl.boardDetails" ng-include="'partials/board.html'">
 
@@ -42,4 +42,5 @@
     </section> -->
   </div>
 </body>
+
 </html>
