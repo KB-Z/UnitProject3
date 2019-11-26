@@ -119,11 +119,12 @@ this.profilePartialshow=false;
     }).then((response) => {
       console.log("in angular session response.data.user", response.data.user);
       console.log('Boards received from response.data.boards: ', response.data.boards);
-      if (response.data.user.username) {
+      if (response.data.user) {
         this.loggedInUser = response.data.user;
         this.boards = response.data.boards;
         this.getBoards();
       } else {
+				alert('Invalid Username or Password');
         this.loginUsername = null;
         this.loginPassword = null;
       };
