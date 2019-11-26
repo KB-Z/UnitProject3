@@ -19,11 +19,19 @@ router.get('/:userid', (req, res) => {
 });
 
 router.post('/', (req, res) => {
+	console.log('Entered POST route to create a new user');
+	console.log(req.body);
   req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
-	//res.json(req.body);
-  User.create(req.body, (err, createdUser) => {
-		if(err){ res.json(err); }
-    res.json(createdUser);
+	console.log('Creating user with: '+req.body.username);
+  User.create(req.body, (error, createdUser) => {
+		if (createdUser) {
+			console.log('User created: ' + createdUser);
+			req.session.user = createdUser;
+    	res.json(createdUser);
+		} else {
+			console.log(error);
+		};
+
   });
 });
 
