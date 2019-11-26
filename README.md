@@ -4,8 +4,8 @@ Project Management Tool - {{Proj3ct}}
   - By Joseph Pena, Zachary Donner, Punitha Arumugham
 
 # Technologies Used:
- Node, Express, Mongo DB, Angular, HTML, CSS, Skeleton-flexbox
- 
+ Node, Express, Mongo DB, AngularJS , HTML, CSS, Skeleton-flexbox
+
 
 ## User Stories:
 * User can log-in
