@@ -28,32 +28,38 @@
 <!-- tasks population -->
   <div ng-repeat="task in ctrl.boards[ctrl.clickedBoardId].tasks">
     <ul>
-    <form class="row inlineform" ng-submit="ctrl.editTask(ctrl.boards[ctrl.clickedBoardId],$index)">
-      <!-- having a seperate mock button as its submitting thevalue and trying to edit at the same time -->
-      <span ng-if="ctrl.indexOfEditTask!==$index || ctrl.editTaskbtn!==true">
-        <span >{{task}}</span>
-        <button type="button" ng-click="ctrl.indexOfEditTask=$index;
+    <form class="row center-xs inlineform" ng-submit="ctrl.editTask(ctrl.boards[ctrl.clickedBoardId],$index)">
+
+      <!-- <span  ng-if="ctrl.indexOfEditTask!==$index || ctrl.editTaskbtn!==true"> -->
+      <div>
+        <span ng-if="ctrl.indexOfEditTask!==$index || ctrl.editTaskbtn!==true">{{task}}</span>
+      </div>
+      <!-- if edit is clicked then input box will appear -->
+      <div class="u-full-width">
+        <input type="text" ng-if="$index === ctrl.indexOfEditTask" class="u-full-width" ng-model="ctrl.newupdateTaskName"  />
+      </div>
+      <div>
+    <!-- having a seperate mock button as its submitting thevalue and trying to edit at the same time -->
+        <button class="button button-primary col"
+         ng-if="ctrl.indexOfEditTask!==$index || ctrl.editTaskbtn!==true"
+                                ng-click="ctrl.indexOfEditTask=$index;
                                         ctrl.editTaskbtn=true;
-                                        ctrl.newupdateTaskName=task"
-        class="button button-primary">
+                                        ctrl.newupdateTaskName=task">
           <span class="lnr lnr-pencil"></span>
         </button>
-      </span>
-      <div>
-        <input type="text" ng-if="$index === ctrl.indexOfEditTask" ng-model="ctrl.newupdateTaskName" />
-      </div>
     <!-- button to initiate the actual edit -->
-      <button ng-if="ctrl.indexOfEditTask===$index && ctrl.editTaskbtn===true " class="button button-primary" type="submit">
+      <button  ng-if="ctrl.indexOfEditTask===$index && ctrl.editTaskbtn===true " class="button button-primary col" type="submit">
         <span class="lnr lnr-pencil"></span>
       </button>
-      <button class="button button-primary" ng-click="ctrl.deleteTask(ctrl.boards[ctrl.clickedBoardId]._id,$index)">
+    <!-- button to delete the task -->
+      <button class="button button-primary col" ng-click="ctrl.deleteTask(ctrl.boards[ctrl.clickedBoardId]._id,$index)">
         <span class="lnr lnr-cross"></span>
       </button>
     </form>
 </ul>
   </div>
 <!-- Adding New tasks -->
-  <form ng-submit="ctrl.createTask(ctrl.boards[ctrl.clickedBoardId])">
+  <form ng-submit="ctrl.createTask(ctrl.boards[ctrl.clickedBoardId])" class="row center-xs">
     <span ng-if="ctrl.addnewTaskClicked">
       <label for="newTaskName">New Task:</label>
       <input id="newTaskName" type="text" placeholder="New Task" ng-model="ctrl.newTaskName">

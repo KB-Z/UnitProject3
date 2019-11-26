@@ -2,6 +2,8 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const router = express.Router();
 const User = require('../models/users.js');
+const Board = require('../models/boards.js');
+
 router.get('/', (req, res) => {
 	User.find({},(err,foundUser) => {
 		console.log(foundUser);
@@ -29,6 +31,10 @@ router.post('/', (req, res) => {
 			req.session.user = createdUser;
     	res.json(createdUser);
 		} else {
+			if(error.code==11000){
+				console.log('User exists.Please login');
+				res.json(error);
+			}else
 			console.log(error);
 		};
 
@@ -37,7 +43,27 @@ router.post('/', (req, res) => {
 
 router.delete('/:userid', (req, res) => {
 	console.log('Entered DELETE route for users');
+	console.log('Deleting user id from assigned boards first');
+		Board.find({assignedTo:req.params.userid}, (error, foundBoards) => {
+			console.log('Entered Board.find');
+			if (foundBoards) {
+				console.log('Found boards: ' + foundBoards);
+				for (let board of foundBoards) {
+					let userIdIndex = board.assignedTo.indexOf(req.params.userid);
+					console.log('User ID Index: ' + userIdIndex);
+					board.assignedTo.splice(userIdIndex, 1);
+					board.save();
+				};
+				console.log('Updated boards: '+ foundBoards);
+			} else {
+				console.log('Error: ' + error);
+				res.json(error);
+			}
+		});//end of Board.find
+
+	console.log('Deleting User');
 	User.findByIdAndRemove(req.params.userid, (error, deletedUser) => {
+		console.log('Finding all boards associated with deleted User and removing user');
 		console.log('Found User & deleting: ' + deletedUser);
 		res.json(deletedUser);
 	});

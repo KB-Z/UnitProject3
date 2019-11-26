@@ -3,6 +3,7 @@ const app = angular.module('prj3ct', []);
 app.controller('ProjectController', ['$http', function($http) {
   this.loggedInUser = false;
   this.signUpToggle = false;
+  this.message="";
   this.boards = [];
   this.clickedBoardId = "";
   this.boardPartialShow = false; ///to navigate to board partials-'true' is to show
@@ -88,12 +89,15 @@ this.profilePartialshow=false;
   };
 
   this.signUp = () => {
+    console.log("inside signup");
     $http({
       url: '/users',
       method: 'POST',
       data: {
-        username: this.signupUsername,
-        password: this.signupPassword,
+        username:this.loginUsername,
+        password: this.loginPassword
+        //username: this.signupUsername,
+      //  password: this.signupPassword,
       }
     }).then((response) => {
 			console.log('Received: ' + response.data);
@@ -104,6 +108,7 @@ this.profilePartialshow=false;
   }
 
   this.login = () => {
+    console.log("inside login",this.loginUsername);
     $http({
       url: '/sessions',
       method: 'POST',
@@ -114,11 +119,12 @@ this.profilePartialshow=false;
     }).then((response) => {
       console.log("in angular session response.data.user", response.data.user);
       console.log('Boards received from response.data.boards: ', response.data.boards);
-      if (response.data.user.username) {
+      if (response.data.user) {
         this.loggedInUser = response.data.user;
         this.boards = response.data.boards;
         this.getBoards();
       } else {
+				alert('Invalid Username or Password');
         this.loginUsername = null;
         this.loginPassword = null;
       };

@@ -5,17 +5,17 @@ const User = require('../models/users.js');
 const Boards = require('../models/boards.js');
 
 router.post('/', (req, res) => {
-  console.log('Entered POST route for sessions');
+  console.log('Entered POST route for sessions',req.body.username);
   User.findOne({username:req.body.username}, (err, foundUser) => {
     console.log('Entered User.findOne function');
-    
+
 		if (foundUser === null) {
       console.log('Unable to find a user');
       res.json({message: 'user not found', status: 401});
     } else {
       console.log('Found a user. Checking password...');
       const doesPasswordMatch = bcrypt.compareSync(req.body.password, foundUser.password);
-      
+
 			if (doesPasswordMatch) {
         console.log('Match. Assigning req.session.user to found user');
         req.session.user = foundUser;
@@ -23,10 +23,10 @@ router.post('/', (req, res) => {
         //res.json(foundUser);
         ///getting the boards tied with the user////////
         //foundUser="5dd6df85bc92ba84d7317bb3"
-        
+
 				Boards.find({assignedTo:foundUser.id}, (err, userBoards) => {
           if(err){res.json(err);} //checking for errors
-          
+
 					console.log('Boards sent to frontend: ' + userBoards);
 					//return to Front-End with user & boards
           res.json({user:foundUser,boards:userBoards});

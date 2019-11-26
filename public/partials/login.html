@@ -4,6 +4,7 @@
   <input id="userLoginUsername" type="text" ng-model="ctrl.loginUsername">
   <label for="userLoginPassword">Password:</label>
   <input id="userLoginPassword" type="password" ng-model="ctrl.loginPassword"><br>
-  <button class="button-primary" type="button" ng-click="ctrl.signUpToggle = !ctrl.signUpToggle">Sign Up</button>
+  <button class="button-primary" type="button" ng-click="ctrl.signUp()">Sign Up</button>
   <input class="button-primary" type="submit" value="Sign In">
+  <p ng-if="ctrl.message!==''">{{ctrl.message}}</p>
 </form>

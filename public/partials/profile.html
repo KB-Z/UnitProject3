@@ -1,5 +1,12 @@
-
-
-
-<h1>Hello</h1>
-Testing
+<div class="container">
+	<h2>Logged in as: {{ctrl.loggedInUser.username}}</h2>
+	<form class="card" ng-submit='ctrl.editUser(ctrl.loggedInUser)'>
+		Edit Username: <input
+			type='text'
+			ng-model='ctrl.editUsername'
+			placeholder='{{ctrl.loggedInUser.username}}'/>
+			<br/>
+		<button class="button button-primary" type='submit'>SUBMIT CHANGES</button>
+	</form>
+	<button class="button button-primary container" ng-click='ctrl.deleteUser(ctrl.loggedInUser)'>DELETE ACCOUNT</button>
+</div>
