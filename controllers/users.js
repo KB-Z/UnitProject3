@@ -29,6 +29,9 @@ router.post('/', (req, res) => {
 			req.session.user = createdUser;
     	res.json(createdUser);
 		} else {
+			if(error.code==11000){
+				console.log('User exists.Please login');
+			}else
 			console.log(error);
 		};
 
