@@ -6,7 +6,7 @@
       <span ng-if="ctrl.editBoardValue===false">
         {{ctrl.boards[ctrl.clickedBoardId].boardName}}
       </span>
-      <input ng-model=ctrl.updateBoardName ng-keypress="($event.charCode===13)?ctrl.editBoardName(ctrl.boards[ctrl.clickedBoardId]._id):return" ng-disabled="!ctrl.editBoardValue" ng-if="ctrl.editBoardValue===true" class="transparentinput"  />
+      <input ng-model=ctrl.updateBoardName ng-keypress="($event.charCode===13)?ctrl.editBoardName(ctrl.boards[ctrl.clickedBoardId]._id):return" ng-disabled="!ctrl.editBoardValue" ng-if="ctrl.editBoardValue===true" class="transparentinput"/>
     </span>
   </h2>
 <!-- just for spacing -->

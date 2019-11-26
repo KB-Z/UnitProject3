@@ -3,6 +3,7 @@ const app = angular.module('prj3ct', []);
 app.controller('ProjectController', ['$http', function($http) {
   this.loggedInUser = false;
   this.signUpToggle = false;
+  this.message="";
   this.boards = [];
   this.clickedBoardId = "";
   this.boardPartialShow = false; ///to navigate to board partials-'true' is to show
@@ -15,7 +16,7 @@ app.controller('ProjectController', ['$http', function($http) {
   this.indexOfNewTaskfield = null;
   this.showDetails = false;
   this.indexOfBoard = null;
-
+this.profilePartialshow=false;
 
   this.includePath = 'partials/menu.html'
   this.changeInclude = (path) => {
@@ -24,7 +25,9 @@ app.controller('ProjectController', ['$http', function($http) {
   this.toggleBoardEdit = () => {
     this.editBoardValue = !this.editBoardValue;
   }
-
+  this.toggleProfile = () => {
+    this.profilePartialshow = !this.profilePartialshow;
+  }
 
 
   this.allUsers = () => {
@@ -86,12 +89,15 @@ app.controller('ProjectController', ['$http', function($http) {
   };
 
   this.signUp = () => {
+    console.log("inside signup");
     $http({
       url: '/users',
       method: 'POST',
       data: {
-        username: this.signupUsername,
-        password: this.signupPassword,
+        username:this.loginUsername,
+        password: this.loginPassword
+        //username: this.signupUsername,
+      //  password: this.signupPassword,
       }
     }).then((response) => {
 			console.log('Received: ' + response.data);
@@ -102,6 +108,7 @@ app.controller('ProjectController', ['$http', function($http) {
   }
 
   this.login = () => {
+    console.log("inside login");
     $http({
       url: '/sessions',
       method: 'POST',
