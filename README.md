@@ -5,7 +5,7 @@ Project Management Tool - {{Proj3ct}}
 
 # Technologies Used:
  Node, Express, Mongo DB, Angular, HTML, CSS, Skeleton-flexbox
-
+ 
 
 ## User Stories:
 * User can log-in
@@ -13,8 +13,10 @@ Project Management Tool - {{Proj3ct}}
 * User can get to the Boards
 * User can only see the boards associated with them
 * User can invite users to the Boards
-* Once the user is invited the other party is allowed access to that board
+    * A search is available to pull all the available users
+* Once the user invites, the other party is allowed to access that board
 * User can edit the boards
 * User can add tasks to their projects
     * User can edit the tasks
     * User can delete the tasks
+* User can change their own profile username and delete them if they feel so
