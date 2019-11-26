@@ -232,7 +232,7 @@ this.addnewTaskClicked=false;
       url: '/boards/deletetasks/' + boardid + '/' + taskid,
       method: 'DELETE'
     }).then((response) => {
-      this.getBoards();
+    //  this.getBoards();
     })
   }
 
