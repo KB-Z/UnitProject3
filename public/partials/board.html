@@ -28,7 +28,7 @@
 <!-- tasks population -->
   <div ng-repeat="task in ctrl.boards[ctrl.clickedBoardId].tasks">
     <ul>
-    <form class="row" ng-submit="ctrl.editTask(ctrl.boards[ctrl.clickedBoardId],$index)">
+    <form class="row center-xs inlineform" ng-submit="ctrl.editTask(ctrl.boards[ctrl.clickedBoardId],$index)">
 
       <!-- <span  ng-if="ctrl.indexOfEditTask!==$index || ctrl.editTaskbtn!==true"> -->
       <div>
@@ -59,7 +59,7 @@
 </ul>
   </div>
 <!-- Adding New tasks -->
-  <form ng-submit="ctrl.createTask(ctrl.boards[ctrl.clickedBoardId])">
+  <form ng-submit="ctrl.createTask(ctrl.boards[ctrl.clickedBoardId])" class="row center-xs">
     <span ng-if="ctrl.addnewTaskClicked">
       <label for="newTaskName">New Task:</label>
       <input id="newTaskName" type="text" placeholder="New Task" ng-model="ctrl.newTaskName">
