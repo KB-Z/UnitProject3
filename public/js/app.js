@@ -13,8 +13,10 @@ this.addnewTaskClicked=false;
   this.indexOfEditTask=null;//variable to ensure only that task edit is shown
   this.newupdateTaskName = "";
   this.editTaskbtn=false;
-
   this.indexOfNewTaskfield=null;
+  this.showDetails = false;
+  this.indexOfBoard = null;
+
 
   this.includePath = 'partials/menu.html'
   this.changeInclude = (path) => {
@@ -22,6 +24,9 @@ this.addnewTaskClicked=false;
   };
   this.toggleBoardEdit=()=>{
     this.editBoardValue = !this.editBoardValue;
+  }
+  this.showDetailsToggle = () => {
+    this.indexOfBoard = !this.indexOfBoard
   }
 
 
@@ -189,7 +194,6 @@ this.addnewTaskClicked=false;
 
   }
 
-
   this.createTask = (board) => {
     $http({
       url: '/boards/addtasks/' + board._id,
@@ -235,8 +239,6 @@ this.addnewTaskClicked=false;
     //  this.getBoards();
     })
   }
-
-
 
   this.deleteBoard = (board) => {
     $http({
