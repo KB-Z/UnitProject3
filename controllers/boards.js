@@ -17,18 +17,21 @@ router.get('/',(req,res) => {
 		};
 	});
 });
-/*
-router.get('/', (req, res) => {
-  console.log('Entered GET route for boards');
-  console.log('Using the following user id: ' + req.session.user._id);
-  Boards.find({
-    assignedTo: req.session.user._id
-  }, (error, foundBoards) => {
-    console.log('Found boards: ' + foundBoards);
-    res.json(foundBoards);
-  })
-})
-*/
+//
+// router.get('/:boardId', (req, res) => {
+//
+//   console.log('Entered GET route for boards');
+//   console.log('Using the following board id: ' + req.params.boardId);
+//
+// 	Boards.findById(req.params.boardId, (error, foundBoard) => {
+// 		console.log('found board: ' + foundBoard);
+//
+// 			res.json(foundBoard);
+//
+// 	});
+
+
+
 
 //to create new boards
 router.post('/', (req, res) => {
@@ -96,7 +99,6 @@ router.put('/addtasks/:id', (req, res) => {
 });
 
 //update Tasks
-//task deletion
 router.put('/updatetasks/', (req, res) => {
   console.log('Entered Update route for Tasks');
   console.log("whole board object passed", req.body.board);

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" ng-app="prj3ct">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,25 +10,24 @@
   <link href="https://fonts.googleapis.com/css?family=Exo&display=swap" rel="stylesheet">
   <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/skeleton.css">
+  <!-- <link rel="stylesheet" href="css/normalize.css"> -->
+  <link rel="stylesheet" href="css/skeleton-flexbox.css">
   <link rel="stylesheet" href="/css/app.css">
   <title ng-non-bindable>{{prj3ct}}</title>
 </head>
 <body ng-controller="ProjectController as ctrl">
-  <div class="container u-full-width-container">
+  <div class="u-full-width-container">
     <ul class="u-full-width" ng-include="'partials/navigation.html'"></ul>
     <div class="row">
-      <h1 class="four columns offset-by-four logo u-max-full-width" ng-non-bindable>{{prj3ct}}</h1>
+      <h1  class="container-fluid" ng-non-bindable>{{prj3ct}}</h1>
     </div>
     <div class="row" ng-if="ctrl.loggedInUser === false">
-      <div class="eight columns offset-by-two card" ng-include="'partials/signup.html'" ng-show="ctrl.signUpToggle"></div>
-      <div class="eight columns offset-by-two card" ng-include="'partials/login.html'" ng-show="!ctrl.signUpToggle"></div>
+      <div class="col-lg-2 col-lg-offset-2 card" ng-include="'partials/login.html'" ng-show="!ctrl.signUpToggle"></div>
+      <div class="col-lg-2 col-lg-offset-2 card" ng-include="'partials/signup.html'" ng-show="ctrl.signUpToggle"></div>
     </div>
-    <div class="row" ng-if="ctrl.loggedInUser !== false">
-      <h2 class="six columns offset-by-three card">{{ctrl.loggedInUser.username}}'s Dashboard</h2>
+    <div class="row center-lg" ng-if="ctrl.loggedInUser !== false">
+      <h2 class="col-lg-3 col-lg-offset-2 card">{{ctrl.loggedInUser.username}}'s Dashboard</h2>
       <div class="u-full-width" ng-include="'partials/dashboard.html'">
-
       </div>
       <div class="u-full-width" ng-show="ctrl.boardDetails" ng-include="'partials/board.html'">
 
@@ -42,4 +42,5 @@
     </section> -->
   </div>
 </body>
+
 </html>

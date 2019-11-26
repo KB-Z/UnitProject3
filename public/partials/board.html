@@ -1,0 +1,76 @@
+<!-- board details just pulled from initial hit and not getting back to db unless there is a change -->
+<div class="container">
+<div class="col">
+  <h2 class="container-fluid card" ng-init="ctrl.updateBoardName=ctrl.boards[ctrl.clickedBoardId].boardName">
+    <span ng-dblclick="ctrl.editBoardValue=true">
+      <span ng-if="ctrl.editBoardValue===false">
+        {{ctrl.boards[ctrl.clickedBoardId].boardName}}
+      </span>
+      <input ng-model=ctrl.updateBoardName ng-keypress="($event.charCode===13)?ctrl.editBoardName(ctrl.boards[ctrl.clickedBoardId]._id):return" ng-disabled="!ctrl.editBoardValue" ng-if="ctrl.editBoardValue===true" class="transparentinput"  />
+    </span>
+  </h2>
+<!-- just for spacing -->
+  <div class="row">
+    <h4 class="six columns offset-by-three"></h4>
+  </div>
+<!-- Adding users to the board -->
+  <div class="container-fluid">
+    <div >
+      <input type='text' placeholder='Search for User' ng-model='searchBox'>
+      <select ng-model="ctrl.invitedUser" ng-options="user.username for user in ctrl.foundUsers | filter: searchBox">
+        {{ctrl.invitedUser.username}}
+      </select>
+      <button class="button-primary" ng-click='ctrl.inviteUser(ctrl.boards[ctrl.clickedBoardId], ctrl.invitedUser)'>
+        Invite to board
+      </button>
+    </div>
+  </div>
+<!-- tasks population -->
+  <div ng-repeat="task in ctrl.boards[ctrl.clickedBoardId].tasks">
+    <ul>
+    <form class="row inlineform" ng-submit="ctrl.editTask(ctrl.boards[ctrl.clickedBoardId],$index)">
+      <!-- having a seperate mock button as its submitting thevalue and trying to edit at the same time -->
+      <span ng-if="ctrl.indexOfEditTask!==$index || ctrl.editTaskbtn!==true">
+        <span >{{task}}</span>
+        <button type="button" ng-click="ctrl.indexOfEditTask=$index;
+                                        ctrl.editTaskbtn=true;
+                                        ctrl.newupdateTaskName=task"
+        class="button button-primary">
+          <span class="lnr lnr-pencil"></span>
+        </button>
+      </span>
+      <div>
+        <input type="text" ng-if="$index === ctrl.indexOfEditTask" ng-model="ctrl.newupdateTaskName" />
+      </div>
+    <!-- button to initiate the actual edit -->
+      <button ng-if="ctrl.indexOfEditTask===$index && ctrl.editTaskbtn===true " class="button button-primary" type="submit">
+        <span class="lnr lnr-pencil"></span>
+      </button>
+      <button class="button button-primary" ng-click="ctrl.deleteTask(ctrl.boards[ctrl.clickedBoardId]._id,$index)">
+        <span class="lnr lnr-cross"></span>
+      </button>
+    </form>
+</ul>
+  </div>
+<!-- Adding New tasks -->
+  <form ng-submit="ctrl.createTask(ctrl.boards[ctrl.clickedBoardId])">
+    <span ng-if="ctrl.addnewTaskClicked">
+      <label for="newTaskName">New Task:</label>
+      <input id="newTaskName" type="text" placeholder="New Task" ng-model="ctrl.newTaskName">
+      <input class="button-primary" type="submit" />
+    </span>
+  </form>
+  <span class="row " ng-if="!ctrl.addnewTaskClicked">
+    <div class="container-fluid">
+      <a class="button button-primary" ng-click="ctrl.addnewTaskClicked=true">
+        + Add New Task
+      </a>
+    </div>
+  </span>
+<!-- Deleting the complete board -->
+  <div class=" row">
+    <div class="container-fluid">
+      <button class="button-primary" ng-click='ctrl.deleteBoard(ctrl.boards[ctrl.clickedBoardId]);ctrl.boardPartialShow=false'>DELETE BOARD</button>
+    </div>
+</div>
+</div>

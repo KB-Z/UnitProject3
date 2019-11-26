@@ -4,20 +4,24 @@ app.controller('ProjectController', ['$http', function($http) {
   this.loggedInUser = false;
   this.signUpToggle = false;
   this.boards = [];
-  this.indexOfEditForm=null;
-  this.editBoardValue = true; ///variable to edit the board name
-
-  this.indexOfEditTask=null;//variable to ensure only that task edit is shown
+  this.clickedBoardId = "";
+  this.boardPartialShow = false; ///to navigate to board partials-'true' is to show
+  this.addnewTaskClicked = false;
+  this.indexOfEditForm = null;
+  this.editBoardValue = false; ///variable to edit the board name
+  this.indexOfEditTask = null; //variable to ensure only that task edit is shown
   this.newupdateTaskName = "";
-  this.editTaskbtn=false;
+  this.editTaskbtn = false;
+  this.indexOfNewTaskfield = null;
+  this.showDetails = false;
+  this.indexOfBoard = null;
 
-  this.indexOfNewTaskfield=null;
 
   this.includePath = 'partials/menu.html'
   this.changeInclude = (path) => {
     this.includePath = 'partials/' + path + '.html'
   };
-  this.toggleBoardEdit=()=>{
+  this.toggleBoardEdit = () => {
     this.editBoardValue = !this.editBoardValue;
   }
 
@@ -129,28 +133,33 @@ app.controller('ProjectController', ['$http', function($http) {
       this.loggedInUser = false;
     })
   }
-
+  /////checking for every refresh//////
   $http({
     method: 'GET',
     url: '/sessions'
   }).then((response) => {
     if (response.data.username) {
       this.loggedInUser = response.data;
+      this.getBoards();
     }
   });
   ////////////////////////////////////////////////////
   ////////////////boards operations//////////////////////////
   ///////////////////////////////////////////////////////////
   this.getBoards = () => {
-    $http({
-      url: '/boards',
-      method: 'GET'
-    }).then((response) => {
-      this.boards = response.data;
+    if (this.loggedInUser != false) {
 
-      console.table(this.boards);
-      // console.log(this.userBoards);
-    });
+
+      $http({
+        url: '/boards',
+        method: 'GET'
+      }).then((response) => {
+        this.boards = response.data;
+
+        console.table(this.boards);
+        // console.log(this.userBoards);
+      });
+    }
   };
 
   this.createBoard = () => {
@@ -164,7 +173,7 @@ app.controller('ProjectController', ['$http', function($http) {
       this.getBoards();
     })
   }
-//////////////you were working on this////////////
+  //////////////you were working on this////////////
   this.editBoardName = (boardid) => {
     console.log("trying to edit the name?", this.updateBoardName);
     $http({
@@ -175,13 +184,12 @@ app.controller('ProjectController', ['$http', function($http) {
       }
     }).then((response) => {
       this.getBoards();
-      this.indexOfEditForm=null;
-      this.editBoardValue = true;
+      this.indexOfEditForm = null;
+      this.editBoardValue = false;
     })
 
 
   }
-
 
   this.createTask = (board) => {
     $http({
@@ -192,13 +200,14 @@ app.controller('ProjectController', ['$http', function($http) {
       }
     }).then((response) => {
       this.getBoards();
-      this.newTaskName="";
-      this.indexOfNewTaskfield="";
+      this.newTaskName = "";
+      this.indexOfNewTaskfield = "";
+      this.addnewTaskClicked = false;
     })
   }
 
   this.editTask = (board, taskid) => {
-    console.log("inside task edit");
+    console.log("inside task edit", taskid);
     board.tasks[taskid] = this.newupdateTaskName;
     console.log("board object with updated task", board);
     $http({
@@ -209,12 +218,11 @@ app.controller('ProjectController', ['$http', function($http) {
       }
     }).then((response) => {
       this.getBoards();
-      this.newupdateTaskName="";
-      this.editTaskbtn=false;
-      this.indexOfEditTask= null;
+      this.newupdateTaskName = "";
+      this.editTaskbtn = false;
+      this.indexOfEditTask = null;
 
-    })
-    ;
+    });
   }
 
   this.deleteTask = (boardid, taskid) => {
@@ -224,11 +232,9 @@ app.controller('ProjectController', ['$http', function($http) {
       url: '/boards/deletetasks/' + boardid + '/' + taskid,
       method: 'DELETE'
     }).then((response) => {
-      this.getBoards();
+      //  this.getBoards();
     })
   }
-
-
 
   this.deleteBoard = (board) => {
     $http({
@@ -246,5 +252,9 @@ app.controller('ProjectController', ['$http', function($http) {
 
   this.getBoards();
   ==================================*/
+  //console.log(this.loggedInUser);
+
+
+
 
 }]);

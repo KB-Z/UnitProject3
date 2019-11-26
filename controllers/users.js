@@ -2,7 +2,6 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const router = express.Router();
 const User = require('../models/users.js');
-
 router.get('/', (req, res) => {
 	User.find({},(err,foundUser) => {
 		console.log(foundUser);
@@ -32,6 +31,7 @@ router.post('/', (req, res) => {
 		} else {
 			console.log(error);
 		};
+
   });
 });
 
