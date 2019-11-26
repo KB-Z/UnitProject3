@@ -27,19 +27,16 @@
     </div>
     <div class="row center-lg" ng-if="ctrl.loggedInUser !== false">
       <h2 class="col-lg-3 col-lg-offset-2 card">{{ctrl.loggedInUser.username}}'s Dashboard</h2>
-      <div class="u-full-width" ng-include="'partials/dashboard.html'">
+      <div class="u-full-width" ng-if="ctrl.profilePartialshow===false" ng-include="'partials/dashboard.html'">
       </div>
       <div class="u-full-width" ng-show="ctrl.boardDetails" ng-include="'partials/board.html'">
 
       </div>
+      <div class="u-full-width"  ng-if="ctrl.profilePartialshow===true" ng-include="'./partials/profile.html'">
+
+      </div>
     </div>
-    <!-- <section class="row" ng-if='ctrl.loggedInUser !== false'>
-      <form class="six columns" ng-submit='ctrl.editUser(ctrl.loggedInUser)'>
-        Username:<input type='text' ng-model='ctrl.editUsername'/>
-        <input type='submit' value='EDIT USERNAME'/>
-      </form>
-      <button class="six columns" ng-click='ctrl.deleteUser(ctrl.loggedInUser)'>DELETE USER</button>
-    </section> -->
+
   </div>
 </body>
 

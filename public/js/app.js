@@ -15,7 +15,7 @@ app.controller('ProjectController', ['$http', function($http) {
   this.indexOfNewTaskfield = null;
   this.showDetails = false;
   this.indexOfBoard = null;
-
+this.profilePartialshow=false;
 
   this.includePath = 'partials/menu.html'
   this.changeInclude = (path) => {
@@ -24,7 +24,9 @@ app.controller('ProjectController', ['$http', function($http) {
   this.toggleBoardEdit = () => {
     this.editBoardValue = !this.editBoardValue;
   }
-
+  this.toggleProfile = () => {
+    this.profilePartialshow = !this.profilePartialshow;
+  }
 
 
   this.allUsers = () => {
