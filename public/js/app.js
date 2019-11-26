@@ -4,16 +4,15 @@ app.controller('ProjectController', ['$http', function($http) {
   this.loggedInUser = false;
   this.signUpToggle = false;
   this.boards = [];
-  this.clickedBoardId="";
-this.boardPartialShow=false;
-this.addnewTaskClicked=false;
-  this.indexOfEditForm=null;
+  this.clickedBoardId = "";
+  this.boardPartialShow = false; ///to navigate to board partials-'true' is to show
+  this.addnewTaskClicked = false;
+  this.indexOfEditForm = null;
   this.editBoardValue = false; ///variable to edit the board name
-
-  this.indexOfEditTask=null;//variable to ensure only that task edit is shown
+  this.indexOfEditTask = null; //variable to ensure only that task edit is shown
   this.newupdateTaskName = "";
-  this.editTaskbtn=false;
-  this.indexOfNewTaskfield=null;
+  this.editTaskbtn = false;
+  this.indexOfNewTaskfield = null;
   this.showDetails = false;
   this.indexOfBoard = null;
 
@@ -22,11 +21,8 @@ this.addnewTaskClicked=false;
   this.changeInclude = (path) => {
     this.includePath = 'partials/' + path + '.html'
   };
-  this.toggleBoardEdit=()=>{
+  this.toggleBoardEdit = () => {
     this.editBoardValue = !this.editBoardValue;
-  }
-  this.showDetailsToggle = () => {
-    this.indexOfBoard = !this.indexOfBoard
   }
 
 
@@ -136,7 +132,7 @@ this.addnewTaskClicked=false;
       this.loggedInUser = false;
     })
   }
-/////checking for every refresh//////
+  /////checking for every refresh//////
   $http({
     method: 'GET',
     url: '/sessions'
@@ -150,19 +146,19 @@ this.addnewTaskClicked=false;
   ////////////////boards operations//////////////////////////
   ///////////////////////////////////////////////////////////
   this.getBoards = () => {
-    if(this.loggedInUser!=false){
+    if (this.loggedInUser != false) {
 
 
-    $http({
-      url: '/boards',
-      method: 'GET'
-    }).then((response) => {
-      this.boards = response.data;
+      $http({
+        url: '/boards',
+        method: 'GET'
+      }).then((response) => {
+        this.boards = response.data;
 
-      console.table(this.boards);
-      // console.log(this.userBoards);
-    });
-      }
+        console.table(this.boards);
+        // console.log(this.userBoards);
+      });
+    }
   };
 
   this.createBoard = () => {
@@ -176,7 +172,7 @@ this.addnewTaskClicked=false;
       this.getBoards();
     })
   }
-//////////////you were working on this////////////
+  //////////////you were working on this////////////
   this.editBoardName = (boardid) => {
     console.log("trying to edit the name?", this.updateBoardName);
     $http({
@@ -187,7 +183,7 @@ this.addnewTaskClicked=false;
       }
     }).then((response) => {
       this.getBoards();
-      this.indexOfEditForm=null;
+      this.indexOfEditForm = null;
       this.editBoardValue = false;
     })
 
@@ -203,14 +199,14 @@ this.addnewTaskClicked=false;
       }
     }).then((response) => {
       this.getBoards();
-      this.newTaskName="";
-      this.indexOfNewTaskfield="";
-      this.addnewTaskClicked=false;
+      this.newTaskName = "";
+      this.indexOfNewTaskfield = "";
+      this.addnewTaskClicked = false;
     })
   }
 
   this.editTask = (board, taskid) => {
-    console.log("inside task edit",taskid);
+    console.log("inside task edit", taskid);
     board.tasks[taskid] = this.newupdateTaskName;
     console.log("board object with updated task", board);
     $http({
@@ -221,12 +217,11 @@ this.addnewTaskClicked=false;
       }
     }).then((response) => {
       this.getBoards();
-      this.newupdateTaskName="";
-      this.editTaskbtn=false;
-      this.indexOfEditTask= null;
+      this.newupdateTaskName = "";
+      this.editTaskbtn = false;
+      this.indexOfEditTask = null;
 
-    })
-    ;
+    });
   }
 
   this.deleteTask = (boardid, taskid) => {
@@ -236,7 +231,7 @@ this.addnewTaskClicked=false;
       url: '/boards/deletetasks/' + boardid + '/' + taskid,
       method: 'DELETE'
     }).then((response) => {
-      this.getBoards();
+      //  this.getBoards();
     })
   }
 

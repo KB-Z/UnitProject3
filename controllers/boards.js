@@ -99,7 +99,6 @@ router.put('/addtasks/:id', (req, res) => {
 });
 
 //update Tasks
-//task deletion
 router.put('/updatetasks/', (req, res) => {
   console.log('Entered Update route for Tasks');
   console.log("whole board object passed", req.body.board);
