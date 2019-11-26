@@ -1,25 +1,106 @@
-<form class="eight columns offset-by-two card" ng-submit="ctrl.createBoard()">
-  <label class="four columns offset-by-four" for="boardName">New Board Name:</label>
-  <input class="eight columns offset-by-two" type="text" id="boardName" ng-model="ctrl.newBoardName">
-  <input type="submit" class="five columns button-primary offset-by-one" value="Create Board">
-  <button type="button" class="five columns button-primary" ng-click="ctrl.getBoards()">Refresh Boards</button>
+<div class="container">
+<div ng-if="ctrl.boardPartialShow===false">
+<form class="col-lg-4 card" ng-submit="ctrl.createBoard()">
+  <label for="boardName">New Board Name:</label>
+  <input type="text" id="boardName" placeholder="New Board" ng-model="ctrl.newBoardName"><br>
+  <input type="submit" class="button-primary" value="Create Board">
+  <button type="button" class="button-primary" ng-click="ctrl.getBoards()">Refresh Boards</button>
 </form>
-<div class="ten columns offset-by-one card" ng-repeat="board in ctrl.boards">
-  <div>
-    <h2><span ng-dblclick="ctrl.detailsToggle()">{{board.boardName}}</span></h2>
-    <!-- <ul ng-repeat="task in board.tasks track by task+$index">
-      <li>{{task}}</li>
-      <form ng-submit="ctrl.editTask(board,$index)">
-        <input type="text" ng-model="ctrl.newupdateTaskName">
-        <input type="submit" value="Update Task">
-      </form> <button ng-click="ctrl.deleteTask(board._id,$index)">Delete Task</button>
-      <li>{{boards.assignedTo}}</li>
-    </ul> -->
-    <form class="eight columns offset-by-two" ng-submit="ctrl.createTask(board)">
-      <label for="newTaskName">New Task:</label>
-      <input id="newTaskName" type="text" ng-model="ctrl.newTaskName">
-      <input class="button-primary" type="submit" value="New Task">
-      <button class="button-primary" ng-click='ctrl.deleteBoard(board)'>Delete Board</button>
-    </form>
+<div class="row around-lg">
+  <div class="col-lg-2 card" ng-repeat="board in ctrl.boards">
+    <div class="box">
+      <h4><span ng-dblclick="ctrl.clickedBoardId=$index; ctrl.boardPartialShow=true">{{board.boardName}}</span></h4>
+    </div>
   </div>
 </div>
+</div>
+<div ng-include="'./partials/board.html'" ng-if="ctrl.boardPartialShow===true">
+</div>
+</div>
+<!-- functions for editing board name. -->
+<!-- <span ng-dblclick="ctrl.editBoardValue=false; ctrl.indexOfEditForm=$index">
+  <span ng-if="ctrl.indexOfEditForm!==$index || ctrl.editBoardValue!=false"> -->
+
+  <!-- </span> -->
+  <!-- <input ng-model=ctrl.updateBoardName ng-keypress="($event.charCode===13)?ctrl.editBoardName(board._id):return" ng-disabled="ctrl.editBoardValue" ng-if="$index === ctrl.indexOfEditForm" class="transparentinput" /> -->
+<!-- </span> -->
+
+<!-- <div ng-if="ctrl.boardPartialShow===false">
+  <form class="eight columns offset-by-two card" ng-submit="ctrl.createBoard()">
+    <label class="four columns offset-by-four" for="boardName">New Board Name:</label>
+    <input class="eight columns offset-by-two" type="text" id="boardName" ng-model="ctrl.newBoardName">
+    <input type="submit" class="five columns button-primary offset-by-one" value="Create Board">
+    <button type="button" class="five columns button-primary" ng-click="ctrl.getBoards()">Refresh Boards</button>
+  </form>
+  <div class="ten columns offset-by-one card" ng-repeat="board in ctrl.boards">
+    <h2 ng-dblclick="ctrl.clickedBoardId=$index; ctrl.boardPartialShow=true">
+        {{board.boardName}}
+    </h2>
+
+  </div>
+</div>
+<div ng-include="'./partials/board.html'" ng-if="ctrl.boardPartialShow===true">
+</div> -->
+
+<!-- Old Stuffs -->
+<!--
+<div class="ten columns offset-by-one card" ng-repeat="board in ctrl.boards">
+  <div>
+    <h2>
+      <span ng-dblclick="ctrl.editBoardValue=false; ctrl.indexOfEditForm=$index">
+        <span ng-if="ctrl.indexOfEditForm!==$index || ctrl.editBoardValue!=false">
+          {{ctrl.boards[ctrl.clickedBoardId].boardName}}
+        </span>
+        <input ng-model=ctrl.updateBoardName ng-keypress="($event.charCode===13)?ctrl.editBoardName(board._id):return" ng-disabled="ctrl.editBoardValue" ng-if="$index === ctrl.indexOfEditForm" class="transparentinput" />
+      </span>
+    </h2>
+
+
+    <div ng-repeat="task in ctrl.boards[ctrl.clickedBoardId].tasks track by task+$index">
+
+      <form class="eight columns offset-by-two" ng-submit="ctrl.editTask(board,$index)">
+        <span>{{task}}</span> -->
+<!-- having a seperate mock button as its submitting thevalue and trying to edit at the same time -->
+<!-- <span ng-if="ctrl.indexOfEditTask!==task+$index || ctrl.editTaskbtn!==true">
+          <button type="button" ng-click="ctrl.indexOfEditTask=task+$index;ctrl.editTaskbtn=true" class="button-primary">
+            <span class="lnr lnr-pencil"></span>
+          </button>
+        </span>
+
+        <input type="text" ng-if="(task+$index) === ctrl.indexOfEditTask" placeholder = {{task}} ng-model="ctrl.newupdateTaskName" /> -->
+<!-- button to initiate the actual edit -->
+<!-- <button ng-if="ctrl.indexOfEditTask===(task+$index) && ctrl.editTaskbtn===true " class="button-primary" type="submit"><span class="lnr lnr-pencil"></span>
+
+        </button>
+        <button class="button-primary" ng-click="ctrl.deleteTask(board._id,$index)"><span class="lnr lnr-cross-circle"></span></button>
+      </form> -->
+<!-- <li>{{board.assignedTo}}</li>-->
+<!-- </div>
+    <form class="eight columns offset-by-two" ng-submit="ctrl.createTask(board)">
+
+      <span ng-if="ctrl.indexOfNewTaskfield===task+$index">
+        <label for="newTaskName">New Task:</label>
+        <input id="newTaskName" type="text" ng-model="ctrl.newTaskName">
+        <input class="button-primary" type="submit" />
+      </span>
+
+    <span class="row" ng-click="ctrl.indexOfNewTaskfield=task+$index">
+      <a class="button-primary" >+ Add New Task</a>
+    </span>
+
+    <div class="row">
+      <div class="nine columns offset-by-three">
+      <input type='text' placeholder='Search for User' ng-model='searchBox'>
+      <select ng-model="ctrl.invitedUser" ng-options="user.username for user in ctrl.foundUsers | filter: searchBox">
+        {{ctrl.invitedUser.username}}
+      </select>
+      <button class="button-primary" ng-click='ctrl.inviteUser(board, ctrl.invitedUser)'>
+        Invite to board
+      </button>
+        </div>
+    </div>
+
+    <button class="button-primary" ng-click='ctrl.deleteBoard(board)'>Delete Board</button>
+</form>
+
+-->

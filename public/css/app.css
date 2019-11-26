@@ -38,13 +38,16 @@ div > h2 {
   background-color: #33658A;
   box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
   border-radius: 12px;
+  text-align: center;
+  padding:10px;
 }
 
 ul {
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  padding: 0 20px;
   overflow: hidden;
+  border-radius: 5px;
   background-color: #2F4858;
   border: 1px solid #F6AE2D;
 }
@@ -67,4 +70,17 @@ ul {
 @media screen and (max-width: 600px) {
   ul.nav li.right,
   ul.nav li {float: none;}
+}
+/*
+ */
+ .transparentinput{
+   background: transparent;
+   border:none;
+   outline: none;
+   text-align: center;
+ }
+.inlineform{
+  display: flex;
+  margin:0 0 -13px 0;
+  justify-content: center;
 }
