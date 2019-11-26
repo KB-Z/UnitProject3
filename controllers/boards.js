@@ -84,7 +84,7 @@ router.put('/update/:id', (req, res) => {
   });
 });
 
-//update the boardSchema
+//add tasks
 router.put('/addtasks/:id', (req, res) => {
   console.log(req.body.tasks);
   Boards.findByIdAndUpdate(req.params.id, {

@@ -108,7 +108,7 @@ this.profilePartialshow=false;
   }
 
   this.login = () => {
-    console.log("inside login");
+    console.log("inside login",this.loginUsername);
     $http({
       url: '/sessions',
       method: 'POST',

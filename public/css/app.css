@@ -50,6 +50,8 @@ ul {
   border-radius: 5px;
   background-color: #2F4858;
   border: 1px solid #F6AE2D;
+  /* display: flex; */
+/* //  justify-content: flex-end; */
 }
 
 .nav {
@@ -84,7 +86,6 @@ ul {
    text-align: center;
  }
 .inlineform{
-  display: flex;
   margin:0 0 -13px 0;
-  justify-content: center;
+
 }
