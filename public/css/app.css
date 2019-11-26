@@ -67,6 +67,10 @@ ul {
   cursor: pointer;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 600px) {
   ul.nav li.right,
   ul.nav li {float: none;}
