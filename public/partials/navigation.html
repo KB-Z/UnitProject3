@@ -1,5 +1,5 @@
-<li class="nav" ng-if="ctrl.loggedInUser!==false" ng-click="ctrl.toggleProfile()">Profile</li>
-<li class="nav" ng-if="ctrl.loggedInUser!==false" ng-click="ctrl.boardPartialShow=false; ctrl.profilePartialshow=false">
+<li class="navButton" ng-if="ctrl.loggedInUser!==false" ng-click="ctrl.toggleProfile()">Profile</li>
+<li class="navButton" ng-if="ctrl.loggedInUser!==false" ng-click="ctrl.boardPartialShow=false; ctrl.profilePartialshow=false">
   My Boards
 </li>
-<li style="float:right" class="nav" ng-if="ctrl.loggedInUser !== false" ng-click="ctrl.logout()">Logout</li>
+<li style="float:right" class="navButton" ng-if="ctrl.loggedInUser !== false" ng-click="ctrl.logout()">Logout</li>

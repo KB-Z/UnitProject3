@@ -10,7 +10,6 @@
   <link href="https://fonts.googleapis.com/css?family=Exo&display=swap" rel="stylesheet">
   <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
-  <!-- <link rel="stylesheet" href="css/normalize.css"> -->
   <link rel="stylesheet" href="css/skeleton-flexbox.css">
   <link rel="stylesheet" href="/css/app.css">
   <title ng-non-bindable>{{prj3ct}}</title>
@@ -18,9 +17,9 @@
 
 <body ng-controller="ProjectController as ctrl">
   <div class="u-full-width-container">
-    <ul class="u-full-width" ng-include="'partials/navigation.html'"></ul>
+    <ul class="u-full-width nav" ng-include="'partials/navigation.html'"></ul>
     <div class="row">
-      <h1 class="container-fluid" ng-non-bindable>{{prj3ct}}</h1>
+      <h1 class="container-fluid logo" ng-non-bindable>{{prj3ct}}</h1>
     </div>
     <div class="row" ng-if="ctrl.loggedInUser === false">
       <div class="col-lg-2 col-lg-offset-2 card" ng-include="'partials/login.html'"></div>
