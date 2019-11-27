@@ -89,6 +89,7 @@ this.profilePartialshow=false;
   };
 
   this.signUp = () => {
+    this.message="";
     console.log("inside signup");
     $http({
       url: '/users',
@@ -100,14 +101,22 @@ this.profilePartialshow=false;
       //  password: this.signupPassword,
       }
     }).then((response) => {
-			console.log('Received: ' + response.data);
-      this.loggedInUser = response.data;
+			console.log('Received: ' + response.data.code);
+      if(response.data.code===11000){
+        this.message="User exists. Please Sign In / Create new username";
+        console.log(this.message);
+        this.loggedInUser=false;
+      }else{
+        this.loggedInUser = response.data;
+      }
+
     }, error => {
 			console.log('Received error: ' + error);
 		});
   }
 
   this.login = () => {
+    this.message="";
     console.log("inside login",this.loginUsername);
     $http({
       url: '/sessions',
@@ -254,14 +263,6 @@ this.profilePartialshow=false;
       console.log(error);
     });
   };
-  /*=======================
-  This is also getting called before the user has a chance
-  to login or signup. So it's throwing an error.
-
-  this.getBoards();
-  ==================================*/
-  //console.log(this.loggedInUser);
-
 
 
 
