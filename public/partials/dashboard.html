@@ -9,7 +9,7 @@
 <div class="row around-lg">
   <div class="col-lg-2 card" ng-repeat="board in ctrl.boards">
     <div class="box">
-      <h4><span class="pointer" ng-dblclick="ctrl.clickedBoardId=$index; ctrl.boardPartialShow=true">{{board.boardName}}</span></h4>
+      <h4><span class="pointer" ng-click="ctrl.clickedBoardId=$index; ctrl.boardPartialShow=true">{{board.boardName}}</span></h4>
     </div>
   </div>
 </div>
