@@ -89,6 +89,7 @@ this.profilePartialshow=false;
   };
 
   this.signUp = () => {
+    this.message="";
     console.log("inside signup");
     $http({
       url: '/users',
@@ -115,6 +116,7 @@ this.profilePartialshow=false;
   }
 
   this.login = () => {
+    this.message="";
     console.log("inside login",this.loginUsername);
     $http({
       url: '/sessions',
@@ -261,8 +263,6 @@ this.profilePartialshow=false;
       console.log(error);
     });
   };
-
-
 
 
 
