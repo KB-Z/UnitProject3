@@ -1,7 +1,3 @@
-/* * {
-  text-align: center;
-} */
-
 body {
   background-color: #86BBD8;
   color: #F6AE2D;
@@ -42,7 +38,7 @@ div > h2 {
   padding:10px;
 }
 
-ul {
+.nav {
   list-style-type: none;
   margin: 0;
   padding: 0 20px;
@@ -50,11 +46,9 @@ ul {
   border-radius: 5px;
   background-color: #2F4858;
   border: 1px solid #F6AE2D;
-  /* display: flex; */
-/* //  justify-content: flex-end; */
 }
 
-.nav {
+.navButton {
   float: left;
   display: block;
   color: #F6AE2D;
@@ -64,7 +58,7 @@ ul {
   margin-bottom: 0;
 }
 
-.nav:hover {
+.navButton:hover {
   background-color: #9D6F1D;
   cursor: pointer;
 }
@@ -77,15 +71,13 @@ ul {
   ul.nav li.right,
   ul.nav li {float: none;}
 }
-/*
- */
- .transparentinput{
-   background: transparent;
-   border:none;
-   outline: none;
-   text-align: center;
- }
+
+.transparentinput{
+  background: transparent;
+  border:none;
+  outline: none;
+  text-align: center;
+}
 .inlineform{
   margin:0 0 -10px 0;
-
 }

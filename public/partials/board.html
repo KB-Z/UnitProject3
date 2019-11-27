@@ -15,7 +15,7 @@
   </div>
 <!-- Adding users to the board -->
   <div class="container-fluid">
-    <div >
+    <div class="card">
       <input type='text' placeholder='Search for User' ng-model='searchBox'>
       <select ng-model="ctrl.invitedUser" ng-options="user.username for user in ctrl.foundUsers | filter: searchBox">
         {{ctrl.invitedUser.username}}
@@ -26,7 +26,7 @@
     </div>
   </div>
 <!-- tasks population -->
-  <div ng-repeat="task in ctrl.boards[ctrl.clickedBoardId].tasks">
+  <div class="card" ng-repeat="task in ctrl.boards[ctrl.clickedBoardId].tasks">
     <ul>
     <form class="row center-xs inlineform" ng-submit="ctrl.editTask(ctrl.boards[ctrl.clickedBoardId],$index)">
 
