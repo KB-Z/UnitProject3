@@ -58,7 +58,7 @@ div > h2 {
   margin-bottom: 0;
 }
 
-.nav:hover {
+.navButton:hover {
   background-color: #9D6F1D;
   cursor: pointer;
 }
